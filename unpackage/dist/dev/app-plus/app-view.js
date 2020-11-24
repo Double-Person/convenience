@@ -216,27 +216,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "v-uni-view",
-    { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
-    [
-      _vm._v("<<<<<<< HEAD\n\t\t\n======="),
-      _c(
-        "v-uni-view",
-        { staticClass: _vm._$g(1, "sc"), attrs: { _i: 1 } },
-        [
-          _c(
-            "v-uni-text",
-            { staticClass: _vm._$g(2, "sc"), attrs: { _i: 2 } },
-            [_vm._v(_vm._$g(2, "t0-0"))]
-          )
-        ],
-        1
-      ),
-      _vm._v(">>>>>>> 0a8e7f0612efe98c31d1d558abea12ef9c69acd2")
-    ],
-    1
-  )
+  return _c("v-uni-view", { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } }, [
+    _vm._v("俄舞欧文合租我")
+  ])
 }
 var recyclableRender = false
 var staticRenderFns = []
