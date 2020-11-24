@@ -7,7 +7,15 @@
 				
 			}
 		}
-	],
+		
+	    ,{
+            "path" : "pages/mycard/mycard",
+            "style" : {
+				"navigationBarTitleText": "我的卡卷"
+				
+			}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
