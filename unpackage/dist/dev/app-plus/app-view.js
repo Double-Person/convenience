@@ -216,7 +216,27 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("v-uni-view", { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } })
+  return _c(
+    "v-uni-view",
+    { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
+    [
+      _vm._v("<<<<<<< HEAD\n\t\t\n======="),
+      _c(
+        "v-uni-view",
+        { staticClass: _vm._$g(1, "sc"), attrs: { _i: 1 } },
+        [
+          _c(
+            "v-uni-text",
+            { staticClass: _vm._$g(2, "sc"), attrs: { _i: 2 } },
+            [_vm._v(_vm._$g(2, "t0-0"))]
+          )
+        ],
+        1
+      ),
+      _vm._v(">>>>>>> 0a8e7f0612efe98c31d1d558abea12ef9c69acd2")
+    ],
+    1
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -434,7 +454,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ 11);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*每个页面公共css */\n", ""]);
+exports.push([module.i, "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/*每个页面公共css */\n.over-ellipsis {\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\n}\n.over-ellipsis-2 {\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  display: -webkit-box;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-pack: center;\r\n  -webkit-box-align: center;\r\n  -webkit-line-clamp: 2;\r\n  overflow: hidden;\n}\n.over-ellipsis-3 {\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  display: -webkit-box;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-pack: center;\r\n  -webkit-line-clamp: 3;\r\n  overflow: hidden;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
