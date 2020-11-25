@@ -10,7 +10,7 @@
 					求职信息文字求职信息文字求职信息文字求职信息文字求职信息文字求职信息文字求职信息文字
 				</view>
 				<view class="fl jc-between fl-warp comment-pics">
-					<image src="/static/img/house.png" mode="" v-for="(item, pic) in 5" :key="pic" class="fl jc-between fl-warp"></image>
+					<image src="/static/img/house.png" mode="" v-for="(item, pic) in 2" :key="pic" class="fl jc-between fl-warp"></image>
 				</view>
 
 				<view class="access">326人浏览</view>

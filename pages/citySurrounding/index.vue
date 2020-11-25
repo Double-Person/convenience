@@ -15,6 +15,7 @@
 		<JobHunting v-show="active === 1"/>
 		
 		<!-- 转让出租 -->
+		<TransferRent v-show="active === 2"/>
 		
 		
 	</view>
@@ -23,10 +24,11 @@
 <script>
 	import SecondaryMarket from './SecondaryMarket.vue';
 	import JobHunting from './JobHunting.vue';
+	import TransferRent from './TransferRent.vue';
 	
 	export default {
 		components:{
-			SecondaryMarket, JobHunting
+			SecondaryMarket, JobHunting, TransferRent
 		},
 		data() {
 			return {
