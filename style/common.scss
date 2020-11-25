@@ -31,8 +31,13 @@
 
 .jc-between {
 	justify-content: space-between;
-	
+	flex-wrap: wrap;
 }
+
+.fl-warp{
+	flex-wrap: wrap;
+}
+
 
 .al-center{
 	align-items: center;

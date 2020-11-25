@@ -8,8 +8,14 @@
 			</view>
 		</view>
 		
+		<!-- 二手市场 -->
+		<SecondaryMarket v-show="active === 0"/>
 		
-		<SecondaryMarket />
+		<!-- 招聘求职 -->
+		<JobHunting v-show="active === 1"/>
+		
+		<!-- 转让出租 -->
+		<TransferRent v-show="active === 2"/>
 		
 		
 	</view>
@@ -17,9 +23,12 @@
 
 <script>
 	import SecondaryMarket from './SecondaryMarket.vue';
+	import JobHunting from './JobHunting.vue';
+	import TransferRent from './TransferRent.vue';
+	
 	export default {
 		components:{
-			SecondaryMarket
+			SecondaryMarket, JobHunting, TransferRent
 		},
 		data() {
 			return {

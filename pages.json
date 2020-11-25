@@ -1,6 +1,23 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/mycard/CardDraw",
+			"style": {
+				"navigationBarTitleText": "我的卡卷",
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "back",
+							"float": "left",
+							"fontWeight": "400"
+						}]
+					}
+				}
+
+			}
+		},
+		{
 			"path": "pages/citySurrounding/index",
 			"style": {
 				"navigationBarTitleText": "城市周边",
@@ -14,7 +31,7 @@
 						}]
 					}
 				}
-
+		
 			}
 		},
 		{

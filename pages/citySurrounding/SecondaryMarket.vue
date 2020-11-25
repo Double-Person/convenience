@@ -5,7 +5,7 @@
 				<UserTitle phone></UserTitle>
 			</view>
 			<view class="fl jc-between list-item">
-				<view v-for="(item,index) in 5" :key="index" class="item">
+				<view v-for="(item,pic) in 5" :key="pic" class="item">
 					<image class="img" src="/static/img/house.png"></image>
 				</view>
 			</view>
