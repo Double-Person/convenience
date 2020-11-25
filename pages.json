@@ -28,7 +28,40 @@
 	    ,{
             "path" : "pages/mycard/mycard",
             "style" : {
-				"navigationBarTitleText": "我的卡卷"
+				"navigationBarTitleText": "我的卡卷",
+				"navigationBarTextStyle": "white"
+		
+				
+			}
+        }
+        ,{
+            "path" : "pages/lifecircle/lifecircle",
+            "style" : {
+				"navigationBarTitleText": "生活圈",
+				"navigationBarTextStyle": "white"
+				
+			}
+        }
+        ,{
+            "path" : "pages/personalcenter/personalcenter",
+            "style" : {
+				"navigationStyle": "custom"
+			}
+        }
+        ,{
+            "path" : "pages/postamessage/postamessage",
+            "style" : {
+				"navigationBarTitleText": "发帖",
+				"navigationBarTextStyle": "white"
+				
+				
+			}
+        }
+        ,{
+            "path" : "pages/postamessage/sendmessage",
+            "style" : {
+				"navigationBarTitleText": "发帖",
+				"navigationBarTextStyle": "white"
 				
 			}
         }
