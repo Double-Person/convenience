@@ -1,4 +1,5 @@
 {
+	
 	"pages": [ 
 		{
 			"path": "pages/index/index",
@@ -35,16 +36,8 @@
 			"path": "pages/citySurrounding/index",
 			"style": {
 				"navigationBarTitleText": "城市周边",
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"titleNView": {
-						"buttons": [{
-							"type": "back",
-							"float": "left",
-							"fontWeight": "400"
-						}]
-					}
-				}
+				"navigationBarTextStyle": "white"
+				
 		
 			}
 		},
@@ -104,6 +97,23 @@
 				"navigationBarTextStyle": "white",
 				"navigationBarBackgroundColor": "#F86D66"
 			}
+        }
+        ,{
+            "path" : "pages/lifeandtv/lifeandtv",
+            "style" : {
+				"navigationBarTitleText": "生活影视",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#F86D66"
+				
+			}
+        }
+        ,{
+            "path" : "pages/login/login",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/login/rigester",
+            "style" : {}
         }
     ],
 

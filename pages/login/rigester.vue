@@ -1,9 +1,8 @@
 <template>
 	<view>
-		<view class="top">
-			个人中心
-			
-		</view>
+		账号<input type="text" value="" />
+		密码<input type="text" value="" />
+		<button type="default">注册</button>
 		
 	</view>
 </template>

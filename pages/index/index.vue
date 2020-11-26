@@ -63,9 +63,9 @@
 
 			<scroll-view scroll-x="true" class="scrollist">
 				<view class="couponitem" v-for="(item,index) in 8" :key="index">
-					<view class="couponlist" style="position: relative;">
-						<text style="font-size:20rpx;color:#FF6B5C;padding: 10rpx;">券</text>
-						<view style="color: white;display: flex;flex-direction: column;align-items: center;position: absolute;top: 5rpx;">
+					<view class="couponlist" style="position: relative;display: flex;justify-content: center;">
+						<text style="font-size:20rpx;color:#FF6B5C;" class="quan">券</text>
+						<view style="color: white;display: flex;flex-direction: column;align-items: center;position: absolute;top: 5rpx;margin: 0 auto;">
 							<text style="font-size:23rpx;">
 								¥<text style="font-size:65rpx;">20</text>
 							</text>
@@ -117,15 +117,12 @@
 
 					<view v-for="(item, index) of list" :key="index" slot="slot{{index}}">
 						<view class="cnt">
-							<view class="title">{{ item.title }}</view>
 							<view class="text">{{ item.text }}</view>
 						</view>
 					</view>
-
 					<template v-slot:default="item">
-						<view class="cnt">
-							<view class="title">{{ item.title }}</view>
-							<view class="text">{{ item.text }}</view>
+						<view class="cnt">				
+							<view class="text" style="font-size: 20rpx;">{{ item.text }}</view>
 						</view>
 					</template>
 				</waterfallsFlow>
@@ -137,21 +134,7 @@
 
 		</view>
 
-		<adTabbar>
-			<adTabbarItem text="首页" dataCur="page1" class="maxWidth" @click="navClick" :textColor="curPage=='page1'? '#DF421D':'#9B9B9B'"
-			 :icon="'icon-xinxi' + [curPage=='page1'?'-hover':''] + '.png'"></adTabbarItem>
-			<adTabbarItem text="咨询" dataCur="page2" class="maxWidth" @click="navClick" :textColor="curPage=='page2'? '#DF421D':'#9B9B9B'"
-			 :icon="'../../static/order' + [curPage=='page2'?'-hover':''] + '.png'"></adTabbarItem>
-			<!--自定义中间View，可以注释掉就是正常4个Tab菜单-->
-			<view class="middleItem" @click="middleClick">
-				<view class="buttonView">+</view>
-				<text></text>
-			</view>
-			<adTabbarItem text="信息" dataCur="page3" class="maxWidth" @click="navClick" :textColor="curPage=='page3'? '#DF421D':'#9B9B9B'"
-			 :icon="'../../static/chart' + [curPage=='page3'?'-hover':''] + '.png'"></adTabbarItem>
-			<adTabbarItem text="我的" dataCur="page4" class="maxWidth" @click="navClick" :textColor="curPage=='page4'? '#DF421D':'#9B9B9B'"
-			 :icon="'../../static/my' + [curPage=='page4'?'-hover':''] + '.png'"></adTabbarItem>
-		</adTabbar>
+	
 	</view>
 </template>
 
@@ -206,7 +189,7 @@
 					{
 						img: require("../../static/img/index/images/chengshi@2x_15.png"),
 						name: "生活影视",
-						url: "",
+						url: "/pages/lifeandtv/lifeandtv",
 					},
 					{
 						img: require("../../static/img/index/images/chengshi@2x_13.png"),
@@ -232,28 +215,53 @@
 				list: [{
 						id: 1,
 						image_url: require("../../static/img/index/images/1606363388(1).jpg"),
-						title: "可爱的小猫咪呀",
+						
 						text: "小小的猫咪，甚是呆萌，呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌",
 					},
 					{
 						id: 2,
 						image_url: require("../../static/img/index/images/1606363400(1).jpg"),
 
-						title: "迪士尼动画",
+						
 						text: "迪士尼动画之……",
 					},
 					{
 						id: 3,
 						image_url: require("../../static/img/index/images/1606363414(1).jpg"),
-						title: "火箭",
+						
 						text: "火箭升空瞬间，宏伟壮观啊",
 					},
 					{
 						id: 4,
 						image_url: require("../../static/img/index/images/1606363430(1).jpg"),
-						title: "火箭",
+						
 						text: "火箭升空瞬间，宏伟壮观啊",
 					},
+					{
+							id: 5,
+							image_url: require("../../static/img/index/images/1606363388(1).jpg"),
+							
+							text: "小小的猫咪，甚是呆萌，呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌",
+						},
+						{
+							id: 6,
+							image_url: require("../../static/img/index/images/1606363400(1).jpg"),
+					
+							
+							text: "迪士尼动画之……",
+						},
+						{
+							id: 7,
+							image_url: require("../../static/img/index/images/1606363414(1).jpg"),
+							
+							text: "火箭升空瞬间，宏伟壮观啊",
+						},
+						{
+							id: 8,
+							image_url: require("../../static/img/index/images/1606363430(1).jpg"),
+							
+							text: "火箭升空瞬间，宏伟壮观啊",
+						},
 
 
 				],
@@ -485,6 +493,7 @@
 
 	.pubuliu {
 		padding: 0 55rpx;
+		margin-bottom: 150rpx;
 	}
 	.ershou{
 		width:170rpx;
@@ -502,5 +511,10 @@
 		image{
 			
 		}
+	}
+	.quan{
+		position: absolute;
+		top: 10rpx;
+		left: 15rpx;
 	}
 </style>

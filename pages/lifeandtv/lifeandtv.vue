@@ -1,10 +1,13 @@
 <template>
 	<view>
-		<view class="top">
-			个人中心
-			
-		</view>
 		
+		
+		
+		
+	
+		
+		
+
 	</view>
 </template>
 
@@ -13,7 +16,11 @@
 		data() {
 			return {
 				
+
 			};
+		},
+		methods: {
+		
 		}
 	}
 </script>

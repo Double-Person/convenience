@@ -2,9 +2,14 @@
 	<view class="uni-steps">
 		<view :class="[direction==='column'?'uni-steps__column':'uni-steps__row']">
 			<view :class="[direction==='column'?'uni-steps__column-text-container':'uni-steps__row-text-container']">
-				<view v-for="(item,index) in options" :key="index" :class="[direction==='column'?'uni-steps__column-text':'uni-steps__row-text']">
-					<text :style="{color:index<=active?activeColor:deactiveColor}" :class="[direction==='column'?'uni-steps__column-title':'uni-steps__row-title']">{{item.title}}</text>
+				<view v-for="(item,index) in options" :key="index" :class="[direction==='column'?'uni-steps__column-text':'uni-steps__row-text']" style="display: flex;flex-direction: column;align-items: center;">
+					<text :style="{color:index<=active?activeColor:deactiveColor}" :class="[direction==='column'?'uni-steps__column-title':'uni-steps__row-title']">{{item.title}}
+					
+					</text>
+					<text :style="{color:index<=active?activeColor:deactiveColor}" style="font-size:18rpx;color: white;margin-top: 5rpx;margin-bottom: 15rpx;">{{item.integral}}</text>
+					
 					<text :style="{color:index<=active?activeColor:deactiveColor}" :class="[direction==='column'?'uni-steps__column-desc':'uni-steps__row-desc']">{{item.desc}}</text>
+					
 				</view>
 			</view>
 			<view :class="[direction==='column'?'uni-steps__column-container':'uni-steps__row-container']">
@@ -45,7 +50,7 @@
 			deactiveColor: {
 				// 未激活状态颜色
 				type: String,
-				default: '#999999'
+				default: '#E9AEAE'
 			},
 			active: {
 				// 当前步骤

@@ -1,6 +1,6 @@
 <template>
 	<view class="index">
-		1651
+		<!-- 1651 -->
 
 		<view class="calendar">
 			<view class="warp">
@@ -191,11 +191,6 @@
 </script>
 
 <style lang="scss" scoped>
-	.index {
-		background: pink;
-	}
-
-
 	.before-day {
 		font-weight: 800;
 		color: #2E2E2E;
@@ -212,7 +207,9 @@
 		margin: 0 auto;
 		width: 585rpx;
 		background: #FFFFFF;
-		border-radius: 10rpx;
+		border-radius: 20rpx;
+		margin-top: 22rpx;
+
 
 		.warp {
 			width: 484rpx;
