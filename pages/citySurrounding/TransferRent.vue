@@ -52,11 +52,14 @@
 <script>
 	import UserTitle from "./UserTitle.vue";
 	import AddInput from "@/components/addInput/AddInput.vue"
+	
 	export default {
 		components: {
 			UserTitle,AddInput
 		},
+		
 		methods: {
+			
 			add(val) {
 				console.log(val)
 			}

@@ -25,6 +25,7 @@
 	import SecondaryMarket from './SecondaryMarket.vue';
 	import JobHunting from './JobHunting.vue';
 	import TransferRent from './TransferRent.vue';
+	import { houseIndex } from '../../api/api.js'
 	
 	export default {
 		components:{
@@ -40,7 +41,15 @@
 				]
 			}
 		},
+		onLoad() {
+			this._houseIndex()
+		},
 		methods: {
+			_houseIndex(){
+				houseIndex({ limit:1, page: 1 }).then(res => {
+					console.log('----',res)
+				})
+			},
 			handelTitle(index) {
 				this.active = index
 			}
