@@ -7,7 +7,7 @@
 				<view class="border" :class="active == index ? 'active' : ''"></view>
 			</view>
 		</view>
-		<view class="content" v-for="(item,index) in 3" :key="index">
+		<view class="content" v-for="(item,index) in 3" :key="index" v-show="active===0">
 			<view class="top flspacebet">
 				<view class="topleft ">
 					<view class="topleftpic">
@@ -62,6 +62,14 @@
 
 			</view>
 
+		</view>
+		<view class="" v-show="active===1">
+			11111
+			
+		</view>
+		<view class="" v-show="active===2">
+			2222222
+			
 		</view>
 	</view>
 </template>

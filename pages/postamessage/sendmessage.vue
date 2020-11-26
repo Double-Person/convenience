@@ -7,8 +7,14 @@
 		<view class="phonum">
 			<view class="pic">
 				<image src="../../static/img/postmessage/lianxiwomendianhua@2x.png" mode=""></image>
-				<input type="text" value="" placeholder="输入联系方式......"/>
 			</view>
+			<input type="text" value="" placeholder="输入联系方式......"/>
+		</view>
+		
+		<view class="sendbtn">
+			<button class="fabu">发布</button>
+			<button class="quxiao">取消</button>
+			
 			
 		</view>
 		
@@ -44,10 +50,14 @@
 		}
 		.addpic{
 			margin-top: 20rpx;
-			border: 1px solid red;
+			
 		
 		}
 		.phonum{
+			display: flex;
+			height: 90rpx;
+			align-items: center;
+			border-top: 5rpx solid #F6F6F6;
 			.pic{
 				width:32rpx;
 				height: 32rpx;
@@ -55,6 +65,32 @@
 					width: 100%;
 					height:100%
 				}
+			}
+			input{
+				margin-left: 20rpx;
+			}
+			
+		}
+		.sendbtn{
+			margin-top: 206rpx;
+			.fabu{
+				width:265rpx;
+				height: 80rpx;
+				line-height: 80rpx;
+				background:#FE4555;
+				color: white;
+				border-radius: 60rpx;
+				
+			}
+			.quxiao{
+				width:265rpx;
+				height: 80rpx;
+					line-height: 80rpx;
+					margin-top: 21rpx;
+				background:#ACACAC;
+				color: white;
+				border-radius: 60rpx;
+				
 			}
 			
 		}

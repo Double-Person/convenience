@@ -37,7 +37,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationStyle": "custom"
 
 			}
 		}
@@ -80,6 +80,21 @@
 				"navigationBarTitleText": "发帖",
 				"navigationBarTextStyle": "white"
 				
+			}
+        }
+        ,{
+            "path" : "pages/postamessage/postdetails",
+            "style" : {
+				"navigationBarTitleText": "",
+				"navigationBarTextStyle": "white"
+			}
+        }
+        ,{
+            "path" : "pages/signin/signin",
+            "style" : {
+				"navigationBarTitleText": "每日签到",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#F86D66"
 			}
         }
     ],
