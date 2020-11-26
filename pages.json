@@ -8,6 +8,13 @@
 			}
 		},
 		{
+			"path": "pages/sign/Sign",
+			"style": {
+				"navigationStyle": "custom"
+		
+			}
+		},
+		{
 			"path": "pages/mycard/CardDraw",
 			"style": {
 				"navigationBarTitleText": "我的卡卷",

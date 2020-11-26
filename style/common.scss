@@ -31,7 +31,11 @@
 
 .jc-between {
 	justify-content: space-between;
-	flex-wrap: wrap;
+	// flex-wrap: wrap;
+}
+
+.jc-around {
+	justify-content: space-around;
 }
 
 .fl-warp{
