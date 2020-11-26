@@ -1,6 +1,13 @@
 {
 	"pages": [ 
 		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle": "custom"
+		
+			}
+		},
+		{
 			"path": "pages/mycard/CardDraw",
 			"style": {
 				"navigationBarTitleText": "我的卡卷",
@@ -34,15 +41,9 @@
 		
 			}
 		},
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationStyle": "custom"
 
-			}
-		}
 		
-	    ,{
+	    {
             "path" : "pages/mycard/mycard",
             "style" : {
 				"navigationBarTitleText": "我的卡卷",
