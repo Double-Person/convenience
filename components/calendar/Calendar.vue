@@ -1,7 +1,5 @@
 <template>
 	<view class="index">
-		<!-- 1651 -->
-
 		<view class="calendar">
 			<view class="warp">
 				<view class="curent-time">{{currentTime}}</view>
@@ -165,12 +163,7 @@
 						check: true
 					},
 				]
-				// arr.length = this.getCurrentMonthDay();
-				// if(this.getCurrentMonthDay() == 0) {
-				// 	arr = []
-				// }else {
-
-				// }
+		
 				arr.length = this.getCurrentMonthDay();
 				this.dayList.push(...arr);
 
@@ -183,8 +176,6 @@
 					};
 					this.dayList.push(obj);
 				}
-
-				console.log(this.dayList)
 			}
 		}
 	}
