@@ -21,13 +21,13 @@
 				<image src="../../static/img/postmessage/向右箭头.png" mode=""></image>
 			</view>
 		</view>
-		
+
 		<view class="citysurrounding bordertop">
 			<view class="common borderxib">
 				<text>城市周边</text>
-				
+
 			</view>
-			<view class="littilecommon">
+			<view class="littilecommon" @tap="topublishsmarket">
 				<text>二手市场</text>
 				<image src="../../static/img/postmessage/向右箭头.png" mode=""></image>
 			</view>
@@ -39,12 +39,12 @@
 				<text>转让出租</text>
 				<image src="../../static/img/postmessage/向右箭头.png" mode=""></image>
 			</view>
-			
-			
+
+
 		</view>
-		
-		
-		
+
+
+
 	</view>
 </template>
 
@@ -52,63 +52,73 @@
 	export default {
 		data() {
 			return {
-				
+
 			};
-		}
+		},
+		methods: {
+			topublishsmarket() {
+				uni.navigateTo({
+					url: "/pages/postamessage/sendmessage"
+				})
+			}
+		},
 	}
 </script>
 
 <style lang="scss" scoped>
-	.borderbottom{
+	.borderbottom {
 		border-bottom: 14rpx solid #F6F6F6;
 	}
-	.bordertop{
+
+	.bordertop {
 		border-top: 14rpx solid #F6F6F6;
 	}
-	.borderxib{
+
+	.borderxib {
 		border-bottom: 2rpx solid #F6F6F6;
 	}
-	.common{
+
+	.common {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		padding: 31rpx 69rpx;
 		background: white;
-	
-		
-		text{
+
+
+		text {
 			font-size: 28rpx;
 			font-weight: bold;
 		}
-		image{
-			
-			width:40rpx;
+
+		image {
+
+			width: 40rpx;
 			height: 45rpx;
 		}
-		
+
 	}
-	.littilecommon{
+
+	.littilecommon {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		padding: 31rpx 69rpx;
 		background: white;
 		border-bottom: 2rpx solid #F6F6F6;
-		
-		text{
+
+		text {
 			font-size: 28rpx;
-			
+
 		}
-		image{
-			
-			width:40rpx;
+
+		image {
+
+			width: 40rpx;
 			height: 45rpx;
 		}
-		
-	}
-	.lifetelevision{
-		
-	}
-	
 
+	}
+
+	.lifetelevision {}
 </style>

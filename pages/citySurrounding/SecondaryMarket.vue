@@ -1,29 +1,55 @@
 <template>
 	<view class="secondary-market">
-		<view v-for="(item,index) in 3" :key="index" class="list">
-			<view class="">
-				<UserTitle phone></UserTitle>
+		<view v-for="(item,index) in marketlist" :key="index" class="list">
+			<view class=""  >
+				<UserTitle phone :item="item.user"> </UserTitle>
 			</view>
-			<view class="fl jc-between list-item">
-				<view v-for="(item,pic) in 5" :key="pic" class="item">
-					<image class="img" src="/static/img/house.png"></image>
+			<view class="fl jc-between list-item"  @tap="toinfo(item.id)" style="border: 1px solid red;">
+				<view v-for="(data,pic) in item.images" :key="pic" class="item">
+					<image class="img" :src="$imgBaseUrl+data"></image>
 				</view>
 			</view>
 			<view class="publish-time">
 				<image class="publish-img" src="/static/img/fabu.png"></image>
-			发布于 2020.8.31</view>
+			发布于 {{item.createtime}}</view>
 		</view>
-		
-	
 
 	</view>
 </template>
 
 <script>
 	import UserTitle from "./UserTitle.vue";
+
+	
+	
 	export default {
+		props:["marketlist"],
 		components:{
-			UserTitle
+			UserTitle,
+			
+		},
+		data(){
+			return{	
+			}
+		},
+		onLoad() {	
+			
+			
+		},
+		onShow() {
+			
+			
+		},
+		methods:{
+			toinfo(id){
+				uni.navigateTo({
+					url:"./smarketinfo?id="+id
+				})
+				
+			}
+			
+			
+		
 		}
 	}
 </script>

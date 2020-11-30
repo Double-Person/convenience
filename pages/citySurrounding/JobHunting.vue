@@ -1,16 +1,16 @@
 <template>
 	<view class="job-hunting">
-		<view v-for="(item, index) in 3" :key="index" class="list">
+		<view v-for="(item, index) in joblist" :key="index" class="list">
 			<!-- 用户头部信息 -->
 			<view class="user-title">
-				<UserTitle top></UserTitle>
+				<UserTitle top :item="item.user"></UserTitle>
 			</view>
 			<view class="list-item">
 				<view class="comment-content">
-					求职信息文字求职信息文字求职信息文字求职信息文字求职信息文字求职信息文字求职信息文字
+					{{item.content}}
 				</view>
-				<view class="fl jc-between fl-warp comment-pics">
-					<image src="/static/img/house.png" mode="" v-for="(item, pic) in 5" :key="pic" class="fl jc-between fl-warp"></image>
+				<view class="fl jc-between fl-warp comment-pics" @tap="toinfo(item.id)">
+					<image :src="$imgBaseUrl+data" mode="" v-for="(data, pic) in item.images" :key="pic" class="fl jc-between fl-warp"></image>
 				</view>
 
 				<view class="access">326人浏览</view>
@@ -19,7 +19,7 @@
 				<AddInput btn="留下信息" class="add-comment" @add="add"/>
 
 				<!-- 评论内容 -->
-				<view class="comment-list" >
+				<!-- <view class="comment-list" >
 					<view class="comment-icon">
 						<image src="/static/img/comment.png" mode=""></image>评论
 					</view>
@@ -38,7 +38,7 @@
 					</view>
 					
 					
-				</view>
+				</view> -->
 
 				
 
@@ -46,6 +46,7 @@
 
 			<view class="null"></view>
 		</view>
+		
 	</view>
 </template>
 
@@ -53,12 +54,19 @@
 	import UserTitle from "./UserTitle.vue";
 	import AddInput from "@/components/addInput/AddInput.vue"
 	export default {
+		props:["joblist"],
 		components: {
 			UserTitle,AddInput
 		},
 		methods: {
 			add(val) {
 				console.log(val)
+			},
+			toinfo(id){
+				uni.navigateTo({
+					url:"./jobhuntinginfo?id="+id
+				})
+				
 			}
 		}
 	};
@@ -170,4 +178,5 @@
 		
 		}
 	}
+	
 </style>

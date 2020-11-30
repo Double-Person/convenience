@@ -3,16 +3,34 @@
 	"pages": [ 
 		{
 		    "path" : "pages/login/login",
-		    "style" : {}
+		    "style" : {
+				"navigationBarTitleText": "",
+				"navigationBarBackgroundColor": "white",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "back",
+							"float": "left",
+							"fontWeight": "400"
+						}]
+					}
+				}
+				
+			}
 		}
 		,{
 		    "path" : "pages/login/rigester",
-		    "style" : {}
+		    "style" : {
+				"navigationBarTitleText": "",
+				"navigationBarBackgroundColor": "white"
+				
+			}
 		},
 		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationStyle": "custom"
+				
 		
 			}
 		},
@@ -116,13 +134,74 @@
 			}
         }
         
+        ,{
+            "path" : "pages/citySurrounding/smarketinfo",
+            "style" : {
+				"navigationBarTitleText": "二手市场详情",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#F86D66"
+			}
+        }
+        ,{
+            "path" : "pages/citySurrounding/transferrentinfo",
+            "style" : {
+				"navigationBarTitleText": "转让出租详情",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#F86D66"
+			}
+        }
+        ,{
+            "path" : "pages/citySurrounding/jobhuntinginfo",
+            "style" : {
+				"navigationBarTitleText": "招聘求职详情",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#F86D66"
+			}
+        }
     ],
 
-
+    
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#FE4555",
 		"backgroundColor": "#F8F8F8"
-	}
+	},
+	 "tabBar":{
+	        "color":"#333",
+	        "selectedColor":"#FE4555",
+	        "backgroundColor":"white",
+	  
+	        "list":[
+	            {
+	                "pagePath":"pages/index/index",
+	                "text":"首页",
+	                "iconPath":"./static/img/index/indexicon2.png",
+	                "selectedIconPath":"./static/img/index/indexicon.png"
+	            },
+	            {
+	                "pagePath":"pages/news/news",
+	                "text":"咨询",
+	                "iconPath":"./static/img/index/zixun.png",
+	                "selectedIconPath":"./static/img/index/zixun2.png"
+	            },
+				{
+				/* 	"pagePath":"pages/postamessage/postamessage", */
+				    "iconPath":"./static/img/index/add.png",
+				    "selectedIconPath":"./static/img/index/cha.png"
+				},
+	            {
+	                "pagePath":"pages/paper/paper",
+	                "text":"信息",
+	                "iconPath":"./static/img/index/message.png",
+	                "selectedIconPath":"./static/img/index/message2.png"
+	            },
+	            {
+	                "pagePath":"pages/personalcenter/personalcenter",
+	                "text":"我的",
+	                "iconPath":"./static/img/index/my.png",
+	                "selectedIconPath":"./static/img/index/my2.png"
+	            }
+	        ]
+	    }
 }

@@ -6,11 +6,13 @@
         'width': (index === current? dots.width*2:dots.width ) + 'px','height':dots.width/3 +'px' ,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border-radius':'0px'}"
 			 :key="index" class="uni-swiper__dots-item uni-swiper__dots-bar" />
 		</view>
+		
 		<view v-if="mode === 'dot'" :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box" key='dot'>
 			<view v-for="(item,index) in info" :style="{
         'width': dots.width + 'px','height':dots.height +'px' ,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border':index !==current ? dots.border:dots.selectedBorder}"
 			 :key="index" class="uni-swiper__dots-item" />
 		</view>
+		
 		<view v-if="mode === 'round'" :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box" key='round'>
 			<view v-for="(item,index) in info" :class="[index === current&&'uni-swiper__dots-long']" :style="{
 		    'width':(index === current? dots.width*3:dots.width ) + 'px','height':dots.height +'px' ,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border':index !==current ? dots.border:dots.selectedBorder}"
@@ -65,9 +67,9 @@
 					height: 8,
 					bottom: 10,
 					color: '#fff',
-					backgroundColor: 'rgba(0, 0, 0, .3)',
+					backgroundColor: 'rgba(254,69,85,.5)',
 					border: '1px rgba(0, 0, 0, .3) solid',
-					selectedBackgroundColor: '#333',
+					selectedBackgroundColor: '#FE4555',
 					selectedBorder: '1px rgba(0, 0, 0, .9) solid'
 				}
 			}

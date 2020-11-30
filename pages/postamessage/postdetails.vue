@@ -6,30 +6,32 @@
 				<button @tap="setthetop">设置置顶</button>
 
 			</view>
+			
+			<view class="coupons">
+				<scroll-view scroll-x="true" class="scrollist">
+					<view class="couponitem ershou" v-for="(item,index) in pic" :key="index">
+						<image :src="$imgBaseUrl+item" mode=""></image>
+					</view>
+				</scroll-view>
+			</view>
+			
 			<view class="concent">
-				<view class="pic">
-					<image src="../../static/img/postmessage/1606289840.jpg" mode=""></image>
-				</view>
 				<view class="article">
-
-					文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字文字
-					描述文字描述文字描述文字描述文字描述文字描述文字描述文字文字描述
-					文字描述文字描述文字描述文字描述文字描述文字描述文字文字描述文字
-					描述文字描述文字描述文字描述文字描述文字描述文字
+				{{this.contents}}
 				</view>
 
 			</view>
 		</view>
-
-
-		<wyb-popup ref="popup" type="center" height="500" width="500" radius="6" :showCloseIcon="true">
+		<wyb-popup ref="popup" type="center" height="600" width="500" radius="6" :showCloseIcon="true">
 			<view class="popup-content settopprop">
 				<radio-group class="radio-group radioiinput">
 					<label class="radio">
-					<text>置顶 3元/天</text>	<radio value="three" checked="" /> 
+						<text>置顶 3元/天</text>
+						<radio value="three" checked="" />
 					</label>
 					<label class="radio">
-					<text>置顶 80元/月</text>	<radio value="eighty" checked="" /> 
+						<text>置顶 80元/月</text>
+						<radio value="eighty" checked="" />
 					</label>
 				</radio-group>
 
@@ -39,16 +41,16 @@
 
 			</view>
 		</wyb-popup>
-		
+
 		<wyb-popup ref="privacypopup" type="center" height="800" width="500" radius="6" :showCloseIcon="true" style="position: relative;">
 			<view class="popup-content ">
 				<view class="privacytitle">
 					隐私协议文字标题
-					
+
 				</view>
 				<view class="privacycontent">
-					
-					                                文字内容文字内容文字内容文字内容文字内容文字文字内容
+
+					文字内容文字内容文字内容文字内容文字内容文字文字内容
 					文字内容文字内容文字内容文字内容文字内容文字文字内文
 					字内容文字文字内容文字内容文字内容内容文字内容文字文
 					字内容文字内容文字内容文字内容文字内容文字文字内容文
@@ -57,23 +59,23 @@
 					文字内容文字文字内容文字内容文字内容内容文字内容文字
 					文字内容文字内容文字内容文字内容文字内容文字文字内文
 					字内容文字文字内容
-					                            
-					
+
+
 				</view>
 				<view class="privacybtn">
 					<button class="no">不同意</button>
 					<button class="yes">同意</button>
-					
+
 				</view>
-				
-				
-		
+
+
+
 			</view>
 		</wyb-popup>
 
 
 		<view class="sendmessage">
-			<input type="text" value="" placeholder="说些什么吧" @tap="showprivacy"/>
+			<input type="text" value="" placeholder="说些什么吧" @tap="showprivacy" />
 
 		</view>
 
@@ -81,29 +83,63 @@
 </template>
 
 <script>
-	import wybPopup from '@/components/wyb-popup/wyb-popup.vue'
+	import wybPopup from '@/components/wyb-popup/wyb-popup.vue';
+	import {
+		market_detail
+	} from '@/api/api.js'
 	export default {
 		components: {
 			wybPopup
 		},
 		data() {
 			return {
-				
+				pic:[],//图片数组
+				contents:"",//产品描述
+
 			};
+		},
+		onLoad(id) {
+			console.log(id);
+			market_detail(id).then(res => {
+				console.log(res)
+				this.pic=res.data.images;
+				this.contents=res.data.content
+
+			})
+
+
+
 		},
 		methods: {
 			setthetop() {
 				this.$refs.popup.show()
 			},
-			showprivacy(){
+			showprivacy() {
 				this.$refs.privacypopup.show()
-				
+
 			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
+	.coupons {
+		border-bottom: 5rpx solid #F6F6F6;
+		.scrollist {
+			width: 700rpx;
+			white-space: nowrap;
+			.couponitem {
+				display: inline-block;
+				margin-right: 40rpx;
+				border-radius: 30rpx;		
+				overflow: hidden;
+			
+			}
+	
+		}
+	
+	}
+
 	.main {
 		padding: 0 83rpx;
 
@@ -130,25 +166,10 @@
 		}
 
 		.concent {
-			.pic {
-				width: 584rpx;
-				height: 584rpx;
-				border-radius: 30rpx;
-				overflow: hidden;
-				margin-bottom: 10rpx;
-
-				image {
-					width: 100%;
-					height: 100%;
-				}
-			}
-
 			.article {
 				font-size: 18rpx;
 				padding: 20rpx;
-
 			}
-
 		}
 	}
 
@@ -182,58 +203,66 @@
 		font-size: 30rpx;
 		margin-top: 125rpx;
 	}
-	.radioiinput{
+
+	.radioiinput {
 		display: flex;
 		flex-direction: column;
-		.radio{
+
+		.radio {
 			margin-top: 96rpx;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			
+
 		}
-		
+
 	}
-	.settopprop{
-		padding:0 56rpx ;
+
+	.settopprop {
+		padding: 0 56rpx;
 	}
-	.popup-content{
+
+	.popup-content {
 		padding: 55rpx;
-	
-		.privacytitle{
+
+		.privacytitle {
 			font-size: 40rpx;
 			font-weight: bold;
 			text-align: center;
 		}
-		.privacycontent{
+
+		.privacycontent {
 			font-size: 16rpx;
 		}
-		.privacybtn{
+
+		.privacybtn {
 			display: flex;
-			justify-content:space-between;
+			justify-content: space-between;
 			position: absolute;
-			
+
 			bottom: 62rpx;
-			
-			
-			button{
+
+
+			button {
 				width: 180rpx;
-				height:70rpx;
+				height: 70rpx;
 				line-height: 70rpx;
 			}
-			.no{
+
+			.no {
 				background: white;
 				border: 1px solid #939393;
-				color:#8B8B8B;
-				
+				color: #8B8B8B;
+
 			}
-			.yes{
+
+			.yes {
 				background: #FE4555;
 				color: white;
 				margin-left: 20rpx;
-				
+
 			}
 		}
-		
+
 	}
 </style>

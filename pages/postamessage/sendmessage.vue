@@ -1,6 +1,7 @@
 <template>
 	<view class="main">
-		<textarea  value="" placeholder="添加文字描述......" />
+		<input type="text" v-model="publishtitle" placeholder="请输入标题" class="publishtitle"/>
+		<textarea  v-model="publishcontent" placeholder="添加文字描述......" />
 		<view class="addpic">
 			<gUpload></gUpload>
 		</view>
@@ -8,11 +9,11 @@
 			<view class="pic">
 				<image src="../../static/img/postmessage/lianxiwomendianhua@2x.png" mode=""></image>
 			</view>
-			<input type="text" value="" placeholder="输入联系方式......"/>
+			<input type="text" v-model="publishphonenumber" placeholder="输入联系方式......"/>
 		</view>
 		
 		<view class="sendbtn">
-			<button class="fabu">发布</button>
+			<button class="fabu" @tap="publish">发布</button>
 			<button class="quxiao">取消</button>
 			
 			
@@ -24,7 +25,10 @@
 </template>
 
 <script>
-	 import gUpload from "@/components/g-upload/g-upload.vue"
+	 import gUpload from "@/components/g-upload/g-upload.vue";
+	 import {
+	 	add_job
+	 } from '@/api/api.js'
 
 	export default {
 		components:{
@@ -33,8 +37,19 @@
 		},
 		data() {
 			return {
+				publishtitle:"",//发布标题
+				publishcontent:"",//发布内容
+				publishphonenumber:"",//发布电话
 				
 			};
+		},
+		methods:{
+			publish(){
+				add_job(this.publishtitle,this.publishcontent,this.publishphonenumber).then(res=>{
+					console.log(res)
+				})
+				
+			}
 		}
 	}
 </script>
@@ -95,5 +110,9 @@
 			
 		}
 	}
-
+    .publishtitle{
+		border: 1px solid #ccc;
+		text-indent: 0.5rem;
+		margin-bottom:20rpx;
+	}
 </style>

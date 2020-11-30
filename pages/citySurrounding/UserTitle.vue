@@ -1,14 +1,18 @@
 <template>
 	<view class="fl jc-between al-center user-title">
-		<view class="fl user-info">
-			<image class="img" src="/static/img/house.png" mode=""></image>
+		<view class="fl user-info" >
+			<image class="img" :src="item.avatar" mode=""></image>
 			<view class="info">
-				<view class="name">ID名称</view>
+				<view class="name">{{item.nickname}}</view>
 				<view class="placed-top" v-show="top">置顶</view>
 			</view>
 		</view>
 		<view class="call-phone" v-show="phone">拨打电话</view>
+		
+		
+		
 	</view>
+	
 </template>
 
 <script>
@@ -21,7 +25,12 @@
 			phone: {
 				type: Boolean,
 				default: false
-			}
+			},
+			item: {
+				type: Object,
+				
+			},
+			
 		}
 	}
 </script>

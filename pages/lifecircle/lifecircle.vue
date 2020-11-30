@@ -71,12 +71,15 @@
 			2222222
 			
 		</view>
+	<!-- 	<Footer/> -->
 	</view>
 </template>
 
 <script>
+	/* import Footer from "../../components/footer/footer.vue" */
 	export default {
 		components: {
+			/* Footer */
 
 		},
 		data() {

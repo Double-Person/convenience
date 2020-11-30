@@ -9,7 +9,7 @@ baseUrl_ ='http://bianmin.hkzhtech.com/api'
 export const baseUrl = baseUrl_
 
 
-export const imgBaseUrl = 'http://bianmin.hkzhtech.com/api'
+export const imgBaseUrl = 'http://bianmin.hkzhtech.com/'
 
 
 
@@ -27,15 +27,18 @@ export const ajax = (option) => {
 		    const value = uni.getStorageSync('CONVENIENCE_TOKEN');
 			
 		    if (value) {	
-				option.data.token = value;
 				token = value
-		    }
+		    }else {
+				if(true) {
+					
+				}
+			}
 		} catch (e) {
 		  
 			console.log(e)
 		}
 		
-		console.log('-------', token)
+		
 		
         uni.request({
             url: baseUrl + option.url,

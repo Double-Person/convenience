@@ -2,6 +2,9 @@ import Vue from 'vue'
 import App from './App'
 // import uView from "uview-ui";
 // Vue.use(uView);
+import {imgBaseUrl} from "./api/request.js"
+Vue.prototype.$imgBaseUrl = imgBaseUrl
+
 
 
 Vue.config.productionTip = false

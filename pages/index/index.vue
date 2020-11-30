@@ -23,15 +23,28 @@
 
 		</view>
 
-		<uni-swiper-dot :info="info" :current="current" field="content" :mode="mode" style="border: 1px solid red;">
+		<!-- 		<uni-swiper-dot :info="info" :current="current" field="content" :mode="mode" autoplay="true">
 			<swiper class="swiper-box">
 				<swiper-item v-for="(item ,index) in info" :key="index">
 					<view class="swiper-item">
-						<image src="../../static/img/index/1606371956(1).png" mode=""></image>
+						<image src="../../static/img/index/1606371956(1).png" mode="" ></image>
+					</view>
+				</swiper-item>
+			</swiper>
+		</uni-swiper-dot> -->
+
+		<uni-swiper-dot :info="info" :current="current" field="content" mode="default">
+			<swiper class="swiper-box" @change="change" autoplay="true"  circular=true>
+				<swiper-item v-for="(item ,index) in info" :key="index">
+					<view class="swiper-item" style="width: 100%;height: 100%;">
+						<image :src="item.img" mode="" style="width: 100%;height: 100%;"></image>
 					</view>
 				</swiper-item>
 			</swiper>
 		</uni-swiper-dot>
+
+
+
 
 		<view class="flcenter">
 			<view class="items">
@@ -72,12 +85,12 @@
 							<text style="font-size:12rpx;margin-bottom: 10rpx;">(店铺红包)</text>
 							<view style="color: white;font-size:17rpx;">满699元使用</view>
 						</view>
-						
+
 					</view>
-					
-				
-					
-			
+
+
+
+
 
 				</view>
 			</scroll-view>
@@ -86,29 +99,24 @@
 
 
 
-          <view class="coupons">
-          	<view class="title">
-          		<text class="left">二手市场</text>
-          		<text class="right">查看详情></text>
-          
-          	</view>
-          
-          	<scroll-view scroll-x="true" class="scrollist">
-          		<view class="couponitem ershou" v-for="(item,index) in 8" :key="index">
+		<view class="coupons">
+			<view class="title">
+				<text class="left">二手市场</text>
+				<text class="right">查看详情></text>
+
+			</view>
+
+			<scroll-view scroll-x="true" class="scrollist">
+				<view class="couponitem ershou" v-for="(item,index) in 8" :key="index">
 					<image src="../../static/img/house.png" mode=""></image>
-          		
-          			
-          		
-          			
-          	
-          
-          		</view>
-          	</scroll-view>
-          </view>
-          
+
+				</view>
+			</scroll-view>
+		</view>
 
 
-		<view class="" style="border: 1px solid red;">
+
+		<view class="">
 			<view class="bottomtitle">
 				我爱分享
 			</view>
@@ -121,7 +129,7 @@
 						</view>
 					</view>
 					<template v-slot:default="item">
-						<view class="cnt">				
+						<view class="cnt">
 							<view class="text" style="font-size: 20rpx;">{{ item.text }}</view>
 						</view>
 					</template>
@@ -134,7 +142,7 @@
 
 		</view>
 
-	
+
 	</view>
 </template>
 
@@ -154,7 +162,8 @@
 			uniNoticeBar,
 			waterfallsFlow,
 			adTabbar,
-			adTabbarItem
+			adTabbarItem,
+
 
 		},
 
@@ -204,64 +213,66 @@
 
 				],
 				info: [{
-					content: '内容 A'
-				}, {
-					content: '内容 B'
-				}, {
-					content: '内容 C'
-				}],
+						img: require("../../static/img/index/1606371956(1).png")
+					}, {
+						img: require("../../static/img/house.png")
+					},
+					{
+						img: require("../../static/img/postmessage/1606289840.jpg")
+					}
+				],
 				current: 0,
 				mode: 'round',
 				list: [{
 						id: 1,
 						image_url: require("../../static/img/index/images/1606363388(1).jpg"),
-						
+
 						text: "小小的猫咪，甚是呆萌，呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌",
 					},
 					{
 						id: 2,
 						image_url: require("../../static/img/index/images/1606363400(1).jpg"),
 
-						
+
 						text: "迪士尼动画之……",
 					},
 					{
 						id: 3,
 						image_url: require("../../static/img/index/images/1606363414(1).jpg"),
-						
+
 						text: "火箭升空瞬间，宏伟壮观啊",
 					},
 					{
 						id: 4,
 						image_url: require("../../static/img/index/images/1606363430(1).jpg"),
-						
+
 						text: "火箭升空瞬间，宏伟壮观啊",
 					},
 					{
-							id: 5,
-							image_url: require("../../static/img/index/images/1606363388(1).jpg"),
-							
-							text: "小小的猫咪，甚是呆萌，呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌",
-						},
-						{
-							id: 6,
-							image_url: require("../../static/img/index/images/1606363400(1).jpg"),
-					
-							
-							text: "迪士尼动画之……",
-						},
-						{
-							id: 7,
-							image_url: require("../../static/img/index/images/1606363414(1).jpg"),
-							
-							text: "火箭升空瞬间，宏伟壮观啊",
-						},
-						{
-							id: 8,
-							image_url: require("../../static/img/index/images/1606363430(1).jpg"),
-							
-							text: "火箭升空瞬间，宏伟壮观啊",
-						},
+						id: 5,
+						image_url: require("../../static/img/index/images/1606363388(1).jpg"),
+
+						text: "小小的猫咪，甚是呆萌，呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌呆萌",
+					},
+					{
+						id: 6,
+						image_url: require("../../static/img/index/images/1606363400(1).jpg"),
+
+
+						text: "迪士尼动画之……",
+					},
+					{
+						id: 7,
+						image_url: require("../../static/img/index/images/1606363414(1).jpg"),
+
+						text: "火箭升空瞬间，宏伟壮观啊",
+					},
+					{
+						id: 8,
+						image_url: require("../../static/img/index/images/1606363430(1).jpg"),
+
+						text: "火箭升空瞬间，宏伟壮观啊",
+					},
 
 
 				],
@@ -270,6 +281,7 @@
 			}
 		},
 		onLoad() {
+			console.log(this.$imgBaseUrl, 222222)
 
 		},
 		methods: {
@@ -283,7 +295,7 @@
 				})
 			},
 			//跳转签到
-			tosingin(){
+			tosingin() {
 				uni.navigateTo({
 					url: "/pages/signin/signin",
 				})
@@ -441,7 +453,7 @@
 
 	.coupons {
 		padding: 0 40rpx;
-		padding-bottom:27rpx;
+		padding-bottom: 27rpx;
 		border-bottom: 5rpx solid #F6F6F6;
 
 
@@ -495,26 +507,32 @@
 		padding: 0 55rpx;
 		margin-bottom: 150rpx;
 	}
-	.ershou{
-		width:170rpx;
+
+	.ershou {
+		width: 170rpx;
 		height: 210rpx;
-		padding:20rpx;
+		padding: 20rpx;
 		border: 1px solid #F6F6F6;
 		margin-right: 5rpx;
-		image{
+
+		image {
 			width: 100%;
 			height: 100%;
-			
+
 		}
 	}
-	.swiper-item{
-		image{
-			
-		}
+
+	.swiper-item {
+		image {}
 	}
-	.quan{
+
+	.quan {
 		position: absolute;
 		top: 10rpx;
 		left: 15rpx;
+	}
+
+	.swiper-box {
+		height: 440rpx;
 	}
 </style>

@@ -1,16 +1,16 @@
 <template>
 	<view class="job-hunting">
-		<view v-for="(item, index) in 3" :key="index" class="list">
+		<view v-for="(item, index) in houselist" :key="index" class="list">
 			<!-- 用户头部信息 -->
 			<view class="user-title">
-				<UserTitle top></UserTitle>
+				<UserTitle top :item="item.user"></UserTitle>
 			</view>
 			<view class="list-item">
 				<view class="comment-content">
-					求职信息文字求职信息文字求职信息文字求职信息文字求职信息文字求职信息文字求职信息文字
+					{{item.content}}
 				</view>
-				<view class="fl jc-between fl-warp comment-pics">
-					<image src="/static/img/house.png" mode="" v-for="(item, pic) in 2" :key="pic" class="fl jc-between fl-warp"></image>
+				<view class="fl jc-between fl-warp comment-pics" @tap="toinfo(item.id)">
+					<image :src="$imgBaseUrl+data" mode="" v-for="(data,pic) in item.images" :key="pic" class="fl jc-between fl-warp"></image>
 				</view>
 
 				<view class="access">326人浏览</view>
@@ -54,6 +54,7 @@
 	import AddInput from "@/components/addInput/AddInput.vue"
 	
 	export default {
+		props:["houselist"],
 		components: {
 			UserTitle,AddInput
 		},
@@ -62,6 +63,12 @@
 			
 			add(val) {
 				console.log(val)
+			},
+			toinfo(id){
+				uni.navigateTo({
+					url:"./transferrentinfo?id="+id
+				})
+				
 			}
 		}
 	};
