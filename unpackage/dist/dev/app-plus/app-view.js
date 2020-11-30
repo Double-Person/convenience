@@ -1353,7 +1353,15 @@ var render = function() {
         [
           _c(
             "v-uni-swiper",
-            { staticClass: _vm._$g(15, "sc"), attrs: { _i: 15 } },
+            {
+              staticClass: _vm._$g(15, "sc"),
+              attrs: { autoplay: "true", circular: "true", _i: 15 },
+              on: {
+                change: function($event) {
+                  return _vm.$handleViewEvent($event)
+                }
+              }
+            },
             _vm._l(_vm._$g(16, "f"), function(item, index, $20, $30) {
               return _c(
                 "v-uni-swiper-item",
@@ -1363,10 +1371,12 @@ var render = function() {
                     "v-uni-view",
                     {
                       staticClass: _vm._$g("17-" + $30, "sc"),
+                      staticStyle: { width: "100%", height: "100%" },
                       attrs: { _i: "17-" + $30 }
                     },
                     [
                       _c("v-uni-image", {
+                        staticStyle: { width: "100%", height: "100%" },
                         attrs: {
                           src: _vm._$g("18-" + $30, "a-src"),
                           mode: "",
@@ -3707,7 +3717,7 @@ var ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(/*! ../../static/img/ind
 exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n[data-v-2be84a3c] .uni-navbar__header {\r\n  line-height: 0 !important;\n}\n.tophead[data-v-2be84a3c] {\r\n  height: var(--status-bar-height);\r\n  background: #FE4555;\n}\n.navbarindex .centersearch[data-v-2be84a3c] {\r\n  position: relative;\n}\n.navbarindex .centersearch uni-input[data-v-2be84a3c] {\r\n  width: 420rpx;\r\n  height: 80rpx;\r\n  background: rgba(0, 0, 0, 0.2);\r\n  border-radius: 50rpx;\r\n  text-indent: 78rpx;\n}\n.navbarindex .centersearch .searchicon[data-v-2be84a3c] {\r\n  width: 38rpx;\r\n  height: 38rpx;\r\n  position: absolute;\r\n  top: 20rpx;\r\n  left: 31rpx;\n}\n.navbarindex .centersearch .searchicon uni-image[data-v-2be84a3c] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.navbarindex .leftpic[data-v-2be84a3c] {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\r\n  font-size: 20rpx;\r\n  color: white;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\n}\n.navbarindex .leftpic uni-image[data-v-2be84a3c] {\r\n  width: 34rpx;\r\n  height: 36rpx;\n}\n.navbarindex .leftpic uni-text[data-v-2be84a3c] {\r\n  line-height: 40rpx;\n}\n.navbarindex .rightpic[data-v-2be84a3c] {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\r\n  font-size: 20rpx;\r\n  color: white;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\n}\n.navbarindex .rightpic uni-image[data-v-2be84a3c] {\r\n  width: 26rpx;\r\n  height: 34rpx;\n}\n.navbarindex .rightpic uni-text[data-v-2be84a3c] {\r\n  line-height: 40rpx;\n}\n.items[data-v-2be84a3c] {\r\n  width: 638rpx;\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-flex-wrap: wrap;\r\n          flex-wrap: wrap;\r\n  -webkit-box-pack: justify;\r\n  -webkit-justify-content: space-between;\r\n          justify-content: space-between;\n}\n.items .eachitems[data-v-2be84a3c] {\r\n  padding: 0 10rpx;\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  margin: 40rpx 0;\n}\n.items .eachitems .itemlogo[data-v-2be84a3c] {\r\n  width: 100rpx;\r\n  height: 100rpx;\r\n  margin-bottom: 20rpx;\n}\n.items .eachitems .itemlogo uni-image[data-v-2be84a3c] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.items .eachitems .itemsname[data-v-2be84a3c] {\r\n  font-size: 28rpx;\n}\n.natic[data-v-2be84a3c] {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  padding: 30rpx 40rpx;\r\n  border-top: 5rpx solid #F6F6F6;\r\n  border-bottom: 5rpx solid #F6F6F6;\n}\n.natic uni-image[data-v-2be84a3c] {\r\n  width: 39rpx;\r\n  height: 29rpx;\r\n  margin-right: 39rpx;\n}\n[data-v-2be84a3c] .uni-noticebar {\r\n  width: 600rpx;\r\n  margin-bottom: 0;\n}\n.coupons[data-v-2be84a3c] {\r\n  padding: 0 40rpx;\r\n  padding-bottom: 27rpx;\r\n  border-bottom: 5rpx solid #F6F6F6;\n}\n.coupons .title[data-v-2be84a3c] {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-pack: justify;\r\n  -webkit-justify-content: space-between;\r\n          justify-content: space-between;\r\n  padding: 38rpx 0;\n}\n.coupons .title .left[data-v-2be84a3c] {\r\n  font-size: 26rpx;\r\n  font-weight: bold;\n}\n.coupons .title .right[data-v-2be84a3c] {\r\n  font-size: 20rpx;\r\n  color: #646464;\n}\n.coupons .scrollist[data-v-2be84a3c] {\r\n  width: 700rpx;\r\n  white-space: nowrap;\n}\n.coupons .scrollist .couponitem[data-v-2be84a3c] {\r\n  display: inline-block;\n}\n.coupons .scrollist .couponitem .couponlist[data-v-2be84a3c] {\r\n  width: 140rpx;\r\n  height: 150rpx;\r\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n  background-size: cover;\r\n  margin-right: 20rpx;\n}\n.bottomtitle[data-v-2be84a3c] {\r\n  font-size: 26rpx;\r\n  font-weight: bold;\r\n  line-height: 80rpx;\r\n  margin-left: 41rpx;\n}\n.pubuliu[data-v-2be84a3c] {\r\n  padding: 0 55rpx;\r\n  margin-bottom: 150rpx;\n}\n.ershou[data-v-2be84a3c] {\r\n  width: 170rpx;\r\n  height: 210rpx;\r\n  padding: 20rpx;\r\n  border: 1px solid #F6F6F6;\r\n  margin-right: 5rpx;\n}\n.ershou uni-image[data-v-2be84a3c] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.quan[data-v-2be84a3c] {\r\n  position: absolute;\r\n  top: 10rpx;\r\n  left: 15rpx;\n}\r\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n[data-v-2be84a3c] .uni-navbar__header {\r\n  line-height: 0 !important;\n}\n.tophead[data-v-2be84a3c] {\r\n  height: var(--status-bar-height);\r\n  background: #FE4555;\n}\n.navbarindex .centersearch[data-v-2be84a3c] {\r\n  position: relative;\n}\n.navbarindex .centersearch uni-input[data-v-2be84a3c] {\r\n  width: 420rpx;\r\n  height: 80rpx;\r\n  background: rgba(0, 0, 0, 0.2);\r\n  border-radius: 50rpx;\r\n  text-indent: 78rpx;\n}\n.navbarindex .centersearch .searchicon[data-v-2be84a3c] {\r\n  width: 38rpx;\r\n  height: 38rpx;\r\n  position: absolute;\r\n  top: 20rpx;\r\n  left: 31rpx;\n}\n.navbarindex .centersearch .searchicon uni-image[data-v-2be84a3c] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.navbarindex .leftpic[data-v-2be84a3c] {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\r\n  font-size: 20rpx;\r\n  color: white;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\n}\n.navbarindex .leftpic uni-image[data-v-2be84a3c] {\r\n  width: 34rpx;\r\n  height: 36rpx;\n}\n.navbarindex .leftpic uni-text[data-v-2be84a3c] {\r\n  line-height: 40rpx;\n}\n.navbarindex .rightpic[data-v-2be84a3c] {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\r\n  font-size: 20rpx;\r\n  color: white;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\n}\n.navbarindex .rightpic uni-image[data-v-2be84a3c] {\r\n  width: 26rpx;\r\n  height: 34rpx;\n}\n.navbarindex .rightpic uni-text[data-v-2be84a3c] {\r\n  line-height: 40rpx;\n}\n.items[data-v-2be84a3c] {\r\n  width: 638rpx;\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-flex-wrap: wrap;\r\n          flex-wrap: wrap;\r\n  -webkit-box-pack: justify;\r\n  -webkit-justify-content: space-between;\r\n          justify-content: space-between;\n}\n.items .eachitems[data-v-2be84a3c] {\r\n  padding: 0 10rpx;\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  margin: 40rpx 0;\n}\n.items .eachitems .itemlogo[data-v-2be84a3c] {\r\n  width: 100rpx;\r\n  height: 100rpx;\r\n  margin-bottom: 20rpx;\n}\n.items .eachitems .itemlogo uni-image[data-v-2be84a3c] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.items .eachitems .itemsname[data-v-2be84a3c] {\r\n  font-size: 28rpx;\n}\n.natic[data-v-2be84a3c] {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  padding: 30rpx 40rpx;\r\n  border-top: 5rpx solid #F6F6F6;\r\n  border-bottom: 5rpx solid #F6F6F6;\n}\n.natic uni-image[data-v-2be84a3c] {\r\n  width: 39rpx;\r\n  height: 29rpx;\r\n  margin-right: 39rpx;\n}\n[data-v-2be84a3c] .uni-noticebar {\r\n  width: 600rpx;\r\n  margin-bottom: 0;\n}\n.coupons[data-v-2be84a3c] {\r\n  padding: 0 40rpx;\r\n  padding-bottom: 27rpx;\r\n  border-bottom: 5rpx solid #F6F6F6;\n}\n.coupons .title[data-v-2be84a3c] {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-pack: justify;\r\n  -webkit-justify-content: space-between;\r\n          justify-content: space-between;\r\n  padding: 38rpx 0;\n}\n.coupons .title .left[data-v-2be84a3c] {\r\n  font-size: 26rpx;\r\n  font-weight: bold;\n}\n.coupons .title .right[data-v-2be84a3c] {\r\n  font-size: 20rpx;\r\n  color: #646464;\n}\n.coupons .scrollist[data-v-2be84a3c] {\r\n  width: 700rpx;\r\n  white-space: nowrap;\n}\n.coupons .scrollist .couponitem[data-v-2be84a3c] {\r\n  display: inline-block;\n}\n.coupons .scrollist .couponitem .couponlist[data-v-2be84a3c] {\r\n  width: 140rpx;\r\n  height: 150rpx;\r\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n  background-size: cover;\r\n  margin-right: 20rpx;\n}\n.bottomtitle[data-v-2be84a3c] {\r\n  font-size: 26rpx;\r\n  font-weight: bold;\r\n  line-height: 80rpx;\r\n  margin-left: 41rpx;\n}\n.pubuliu[data-v-2be84a3c] {\r\n  padding: 0 55rpx;\r\n  margin-bottom: 150rpx;\n}\n.ershou[data-v-2be84a3c] {\r\n  width: 170rpx;\r\n  height: 210rpx;\r\n  padding: 20rpx;\r\n  border: 1px solid #F6F6F6;\r\n  margin-right: 5rpx;\n}\n.ershou uni-image[data-v-2be84a3c] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.quan[data-v-2be84a3c] {\r\n  position: absolute;\r\n  top: 10rpx;\r\n  left: 15rpx;\n}\n.swiper-box[data-v-2be84a3c] {\r\n  height: 440rpx;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -7620,7 +7630,12 @@ var render = function() {
             {
               key: item,
               staticClass: _vm._$g("14-" + $31, "sc"),
-              attrs: { _i: "14-" + $31 }
+              attrs: { _i: "14-" + $31 },
+              on: {
+                click: function($event) {
+                  return _vm.$handleViewEvent($event)
+                }
+              }
             },
             [
               _c("v-uni-image", {
@@ -7943,7 +7958,15 @@ var render = function() {
           ),
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(22, "sc"), attrs: { _i: 22 } },
+            {
+              staticClass: _vm._$g(22, "sc"),
+              attrs: { _i: 22 },
+              on: {
+                click: function($event) {
+                  return _vm.$handleViewEvent($event)
+                }
+              }
+            },
             [
               _c("v-uni-text", { attrs: { _i: 23 } }, [_vm._v("招聘求职")]),
               _c("v-uni-image", {
@@ -7954,7 +7977,15 @@ var render = function() {
           ),
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(25, "sc"), attrs: { _i: 25 } },
+            {
+              staticClass: _vm._$g(25, "sc"),
+              attrs: { _i: 25 },
+              on: {
+                click: function($event) {
+                  return _vm.$handleViewEvent($event)
+                }
+              }
+            },
             [
               _c("v-uni-text", { attrs: { _i: 26 } }, [_vm._v("转让出租")]),
               _c("v-uni-image", {
@@ -8171,7 +8202,20 @@ var render = function() {
       _c(
         "v-uni-view",
         { staticClass: _vm._$g(3, "sc"), attrs: { _i: 3 } },
-        [_c("gUpload", { attrs: { _i: 4 } })],
+        [
+          _c("gUpload", {
+            ref: "gUpload",
+            attrs: { _i: 4 },
+            on: {
+              chooseFile: function($event) {
+                return _vm.$handleViewEvent($event)
+              },
+              imgDelete: function($event) {
+                return _vm.$handleViewEvent($event)
+              }
+            }
+          })
+        ],
         1
       ),
       _c(
@@ -8508,7 +8552,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ 10);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 上传  str */\n.imglistbx[data-v-7b24d5e4] {\n  width: 100%;\n  height: 100%;\n}\n.imglistItem[data-v-7b24d5e4] {\n  position: relative;\n  float: left;\n  margin-bottom: 20rpx;\n  border-radius: 10rpx;\n}\n.column3[data-v-7b24d5e4] {\n  width: 33.3333%;\n  height: 160rpx;\n}\n.column4[data-v-7b24d5e4] {\n  width: 25%;\n  height: 130rpx;\n}\n.itemImg[data-v-7b24d5e4] {\n  width: 70%;\n  height: 100%;\n  margin: 0 auto;\n  display: block;\n  border-radius: 10rpx;\n}\n.cancelBtn[data-v-7b24d5e4] {\n  position: absolute;\n  top: -10rpx;\n  right: 10rpx;\n}\n/* 上传控件 */\n.uploadControl[data-v-7b24d5e4] {\n  font-size: 50rpx;\n  color: #888;\n  background-color: #EEEEEE;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          justify-content: center;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n}\n/*  上传  str end*/\n.clear[data-v-7b24d5e4] {\n  clear: both;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 上传  str */\n.imglistbx[data-v-7b24d5e4] {\n  width: 100%;\n  height: 100%;\n}\n.imglistItem[data-v-7b24d5e4] {\n  position: relative;\n  float: left;\n  margin-bottom: 20rpx;\n  border-radius: 10rpx;\n}\n.column3[data-v-7b24d5e4] {\n  width: 33.3333%;\n  height: 160rpx;\n}\n.column4[data-v-7b24d5e4] {\n  width: 25%;\n  height: 130rpx;\n}\n.itemImg[data-v-7b24d5e4] {\n  width: 70%;\n  height: 100%;\n  margin: 0 auto;\n  display: block;\n  border-radius: 10rpx;\n}\n.cancelBtn[data-v-7b24d5e4] {\n  position: absolute;\n  top: -10rpx;\n  right: 10rpx;\n}\n/* 上传控件 */\n.uploadControl[data-v-7b24d5e4] {\n  font-size: 50rpx;\n  color: #888;\n  background-color: #EEEEEE;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          justify-content: center;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n}\n/*  上传  str end*/\n.clear[data-v-7b24d5e4] {\n  clear: both;\n}\n", ""]);
 // Exports
 module.exports = exports;
 

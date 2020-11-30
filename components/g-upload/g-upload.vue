@@ -75,6 +75,7 @@
       },
       // 上传图片
       uploadImg() {
+		
         uni.chooseImage({
           sizeType: ['compressed '],
           count: this.maxCount,
@@ -83,6 +84,7 @@
             tempFilePaths=tempFilePaths.slice(0,this.maxCount-this.showList.length);
             tempFilePaths.forEach((item) => {
               this.imgList.push(item);
+			 
             })
             this.$emit("chooseFile", this.imgList, tempFilePaths)
           }

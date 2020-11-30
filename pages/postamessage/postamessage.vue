@@ -31,11 +31,11 @@
 				<text>二手市场</text>
 				<image src="../../static/img/postmessage/向右箭头.png" mode=""></image>
 			</view>
-			<view class="littilecommon">
+			<view class="littilecommon"  @tap="topublishsmarket">
 				<text>招聘求职</text>
 				<image src="../../static/img/postmessage/向右箭头.png" mode=""></image>
 			</view>
-			<view class="littilecommon">
+			<view class="littilecommon" @tap="topublishsmarket">
 				<text>转让出租</text>
 				<image src="../../static/img/postmessage/向右箭头.png" mode=""></image>
 			</view>
@@ -61,6 +61,7 @@
 					url: "/pages/postamessage/sendmessage"
 				})
 			}
+	
 		},
 	}
 </script>
