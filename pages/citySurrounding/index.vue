@@ -1,5 +1,6 @@
 <template>
 	<view class="surrounding">
+	<scroll-view scroll-y="true" >
 		<!-- 标题栏 -->
 		<view class="fl al-center nav-bar">
 			<view v-for="(item,index) in navBar" :key="index" class="nav-bar-item" @click="handelTitle(index)">
@@ -7,17 +8,18 @@
 				<view class="border" :class="active == index ? 'active' : ''"></view>
 			</view>
 		</view>
-
+		
 		<!-- 二手市场 -->
 		<SecondaryMarket v-show="active === 0" :marketlist="marketlist" />
-
+		
 		<!-- 招聘求职 -->
 		<JobHunting v-show="active === 1" :joblist="joblist" />
-
+		
 		<!-- 转让出租 -->
 		<TransferRent v-show="active === 2" :houselist="houselist" />
-
-
+		
+		
+	</scroll-view>
 	</view>
 </template>
 
@@ -25,6 +27,7 @@
 	import SecondaryMarket from './SecondaryMarket.vue';
 	import JobHunting from './JobHunting.vue';
 	import TransferRent from './TransferRent.vue';
+	import mixin from "@/mixin/mixin.js"
 	import {
 		houseIndex,
 		house_detail,
@@ -42,6 +45,7 @@
 			JobHunting,
 			TransferRent
 		},
+		mixins:[mixin],
 		data() {
 			return {
 				active: 0,
@@ -66,22 +70,43 @@
 				joblist: [], //工作列表
 				where: {
 					page: 1,
-					limit: 10
-				}
+					limit: 2,
+					
+				},
+				finshed: false,
 			}
 
 		},
+		
 		onLoad() {
-			this._market()
+			this.getList()
 			
 			console.log(this.$imgBaseUrl, "城市周边")
 		},
 		methods: {
+			getList(){
+				/* if(this.finshed) return false; */
+				market(this.where).then(res => {
+					this.marketlist = res.data;
+					/* this.marketlist.push(res.data); */
+					/* if(this.marketlist < this.where.limit) {
+						this.finshed = true
+					} */
+					this.where.page+=1;
+					
+				
+					console.log(this.where.page)
+				})
+					
+				
+				
+				
+			},
 			//房屋列表
 			_houseIndex() {
 				houseIndex(this.where).then(res => {
-
 					this.houselist = res.data
+					
 				})
 			},
 			//工作列表
@@ -92,12 +117,12 @@
 			},
 		
 			//市场列表
-			_market() {
+		/* 	_market() {
 				market(this.where).then(res => {
 					console.log(res)
 					this.marketlist = res.data
 				})
-			},
+			}, */
 
 			handelTitle(index) {
 				this.active = index

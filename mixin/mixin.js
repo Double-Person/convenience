@@ -1,4 +1,9 @@
 const mixin = {
+	data(){
+		return{
+			limit: 1
+		}
+	},
 	mounted() {
 		console.log('全局mixin');
 		// this.test()

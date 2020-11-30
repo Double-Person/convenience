@@ -1,9 +1,9 @@
 <template>
 	<view class="fl jc-between al-center user-title">
 		<view class="fl user-info" >
-			<image class="img" :src="item.avatar" mode=""></image>
+			<image class="img" :src= "item && item.avatar" mode=""></image>
 			<view class="info">
-				<view class="name">{{item.nickname}}</view>
+				<view class="name">{{item && item.nickname}}</view>
 				<view class="placed-top" v-show="top">置顶</view>
 			</view>
 		</view>
