@@ -2,7 +2,7 @@
 	<view>
 		<view class="lifetelevision common borderbottom bordertop">
 			<text>生活影视</text>
-			<image src="../../static/img/postmessage/向右箭头.png" mode=""></image>
+			<image src="/static/img/postmessage/right.png" mode=""></image>
 		</view>
 		<view class="livecircle">
 			<view class="common borderxib">
@@ -10,15 +10,15 @@
 			</view>
 			<view class="littilecommon">
 				<text>圈友吐槽</text>
-				<image src="../../static/img/postmessage/向右箭头.png" mode=""></image>
+				<image src="/static/img/postmessage/right.png" mode=""></image>
 			</view>
 			<view class="littilecommon">
 				<text>名品分享</text>
-				<image src="../../static/img/postmessage/向右箭头.png" mode=""></image>
+				<image src="/static/img/postmessage/right.png" mode=""></image>
 			</view>
 			<view class="littilecommon">
 				<text>非诚勿扰</text>
-				<image src="../../static/img/postmessage/向右箭头.png" mode=""></image>
+				<image src="/static/img/postmessage/right.png" mode=""></image>
 			</view>
 		</view>
 
@@ -27,17 +27,17 @@
 				<text>城市周边</text>
 
 			</view>
-			<view class="littilecommon" @tap="topublishsmarket">
+			<view class="littilecommon" @tap="topublishsmarket('market')">
 				<text>二手市场</text>
-				<image src="../../static/img/postmessage/向右箭头.png" mode=""></image>
+				<image src="/static/img/postmessage/right.png" mode=""></image>
 			</view>
-			<view class="littilecommon"  @tap="topublishsmarket">
+			<view class="littilecommon"  @tap="topublishsmarket('job')">
 				<text>招聘求职</text>
-				<image src="../../static/img/postmessage/向右箭头.png" mode=""></image>
+				<image src="/static/img/postmessage/right.png" mode=""></image>
 			</view>
-			<view class="littilecommon" @tap="topublishsmarket">
+			<view class="littilecommon" @tap="topublishsmarket('rent')">
 				<text>转让出租</text>
-				<image src="../../static/img/postmessage/向右箭头.png" mode=""></image>
+				<image src="/static/img/postmessage/right.png" mode=""></image>
 			</view>
 
 
@@ -56,9 +56,9 @@
 			};
 		},
 		methods: {
-			topublishsmarket() {
+			topublishsmarket(type) {
 				uni.navigateTo({
-					url: "/pages/postamessage/sendmessage"
+					url: "/pages/postamessage/sendmessage?type=" + type
 				})
 			}
 	

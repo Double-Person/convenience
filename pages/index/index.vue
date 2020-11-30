@@ -8,7 +8,7 @@
 				<view class="centersearch">
 					<input type="text" value="" placeholder="站内/站外搜索" />
 					<view class="searchicon">
-						<image src="../../static/img/index/sousuo@2x.png" mode=""></image>
+						<image src="/static/img/index/sousuo@2x.png" mode=""></image>
 					</view>
 				</view>
 				<view slot="left" class="leftpic" @tap="tosingin">
@@ -23,15 +23,6 @@
 
 		</view>
 
-		<!-- 		<uni-swiper-dot :info="info" :current="current" field="content" :mode="mode" autoplay="true">
-			<swiper class="swiper-box">
-				<swiper-item v-for="(item ,index) in info" :key="index">
-					<view class="swiper-item">
-						<image src="../../static/img/index/1606371956(1).png" mode="" ></image>
-					</view>
-				</swiper-item>
-			</swiper>
-		</uni-swiper-dot> -->
 
 		<uni-swiper-dot :info="info" :current="current" field="content" mode="default">
 			<swiper class="swiper-box" @change="change" autoplay="true"  circular=true>
@@ -63,7 +54,7 @@
 
 		</view>
 		<view class="natic">
-			<image src="../../static/img/index/gonggao@2x.png" mode=""></image>
+			<image src="/static/img/index/gonggao@2x.png" mode=""></image>
 			<uni-notice-bar single="true" text=" 这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏" background-color="white"
 			 color="black"></uni-notice-bar>
 		</view>
@@ -76,9 +67,9 @@
 
 			<scroll-view scroll-x="true" class="scrollist">
 				<view class="couponitem" v-for="(item,index) in 8" :key="index">
-					<view class="couponlist" style="position: relative;display: flex;justify-content: center;">
+					<view class="fl couponlist" style="position: relative;justify-content: center;">
 						<text style="font-size:20rpx;color:#FF6B5C;" class="quan">券</text>
-						<view style="color: white;display: flex;flex-direction: column;align-items: center;position: absolute;top: 5rpx;margin: 0 auto;">
+						<view class="fl al-center" style="color: white;flex-direction: column;position: absolute;top: 5rpx;margin: 0 auto;">
 							<text style="font-size:23rpx;">
 								¥<text style="font-size:65rpx;">20</text>
 							</text>
@@ -108,7 +99,7 @@
 
 			<scroll-view scroll-x="true" class="scrollist">
 				<view class="couponitem ershou" v-for="(item,index) in 8" :key="index">
-					<image src="../../static/img/house.png" mode=""></image>
+					<image src="/static/img/house.png" mode=""></image>
 
 				</view>
 			</scroll-view>
@@ -142,6 +133,7 @@
 </template>
 
 <script>
+	import mixin from "@/mixin/mixin.js"
 	import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue";
 	import uniSwiperDot from "@/components/uni-swiper-dot/uni-swiper-dot.vue";
 	import uniNoticeBar from '@/components/uni-notice-bar/uni-notice-bar.vue';
@@ -158,9 +150,8 @@
 			waterfallsFlow,
 			adTabbar,
 			adTabbarItem,
-
-
 		},
+		mixins:[mixin],
 
 		data() {
 			return {
@@ -218,6 +209,10 @@
 				],
 				current: 0,
 				mode: 'round',
+				parmas: {
+					page: 1, 
+					limit: 10,
+				},
 				list: [{
 						id: 1,
 						image_url: require("../../static/img/index/images/1606363388(1).jpg"),
@@ -277,17 +272,18 @@
 		},
 		onLoad() {
 			console.log(this.$imgBaseUrl, 222222)
+			
 
 		},
 		methods: {
+			getList() {
+				console.log('获取数据列表')
+			},
 			change(e) {
 				this.current = e.detail.current;
 			},
 			tootherpage(url) {
-				uni.navigateTo({
-					url: url
-
-				})
+				uni.navigateTo({ url: url })
 			},
 			//跳转签到
 			tosingin() {
@@ -295,11 +291,7 @@
 					url: "/pages/signin/signin",
 				})
 			},
-			onReachBottom(){
-				console.log(222)
-			},
-			
-			
+					
 			
 
 		}
