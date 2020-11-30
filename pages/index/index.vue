@@ -134,12 +134,7 @@
 						</view>
 					</template>
 				</waterfallsFlow>
-
 			</view>
-
-
-
-
 		</view>
 
 
@@ -299,7 +294,13 @@
 				uni.navigateTo({
 					url: "/pages/signin/signin",
 				})
-			}
+			},
+			onReachBottom(){
+				console.log(222)
+			},
+			
+			
+			
 
 		}
 	}

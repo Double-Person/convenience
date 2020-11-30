@@ -4,7 +4,7 @@
 			<view class=""  >
 				<UserTitle phone :item="item.user"> </UserTitle>
 			</view>
-			<view class="fl jc-between list-item"  @tap="toinfo(item.id)" style="border: 1px solid red;">
+			<view class="fl jc-between list-item"  @tap="toinfo(item.id)">
 				<view v-for="(data,pic) in item.images" :key="pic" class="item">
 					<image class="img" :src="$imgBaseUrl+data"></image>
 				</view>
@@ -68,9 +68,9 @@
 					width: 190rpx;
 				}
 				.item {
-					width: 190rpx;
-					height: 264rpx;
-					box-shadow: 0 0 10rpx 10rpx #eee;
+					width: 175rpx;
+					height: 175rpx;
+					
 					margin-bottom: 14rpx;
 					.img {
 						width: 100%;
