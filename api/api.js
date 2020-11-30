@@ -48,3 +48,42 @@ export const add_house_comment = data => ajax({ url: '/house/add_house_comment',
 
 
 
+
+
+export const upLoadFile = (option) => {
+	if(!option.path) {
+		throw new TypeError('文件上传路径不能为空')
+	}
+	return new Promise((resolve, reject) => {
+		uni.showLoading({
+			title: '上传中',
+			icon: 'loading',
+			mask: true
+		})
+		uni.uploadFile({
+			url: baseUrl + '/uploadFile/file',
+			filePath: option.path,
+			name: option.name || 'file',
+			formData: {
+				// file: 'test'
+			},
+			success: (uploadFileRes) => {
+				console.log(uploadFileRes)
+				uni.hideLoading()
+				resolve(uploadFileRes)
+			},
+			fail: err => {
+				uni.hideLoading();
+				uni.showToast({
+					title: '上传失败，请重新上传',
+					icon: 'none'
+				})
+				reject(err)
+			},
+			complete() {
+				
+			}
+		});
+	})
+	
+}
