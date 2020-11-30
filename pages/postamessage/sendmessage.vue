@@ -3,11 +3,12 @@
 		<input type="text" v-model="parmas.title" placeholder="请输入标题" class="publishtitle" />
 		<textarea class="textarea" maxlength="-1" v-model="parmas.centent" placeholder="添加文字描述......" />
 		<view class="addpic">
-			<view class="fl jc-between fl-warp imgshow">
-				<image class="upload" src="/static/img/postmessage/upload.png" mode=""  @tap="uploadFileToServe" v-if="parmas.images < 5"></image>
+			<view class="fl fl-warp imgshow">
+				
 				<view v-for="(item,index) in parmas.images" :key="index" v-if="parmas.images">
 					<image :src="$imgBaseUrl + item" mode=""></image>
 				</view>
+				<image class="upload" src="/static/img/postmessage/upload.png" mode=""  @tap="uploadFileToServe" v-if="parmas.images.length < 5"></image>
 			</view>
 		</view>
 		
@@ -196,14 +197,21 @@
 	}
 
 	.imgshow{
+		// &::after{
+		// 	width: 140rpx;
+		// 	height: 140rpx;
+		// 	content: '';
+		// }
 		image{
 			width: 140rpx;
 			height: 140rpx;
 			margin-bottom: 20rpx;
+			margin-right: 34rpx;
 		}
 		.upload{
 			width: 140rpx;
 			height: 140rpx;
+			margin-right: 0rpx;
 		}
 		
 		

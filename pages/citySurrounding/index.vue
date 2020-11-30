@@ -76,7 +76,7 @@
 				marketlist: [], //市场列表
 				houselist: [], //房屋列表
 				joblist: [], //工作列表
-				limit: 2,
+				limit: 10,
 
 
 			}
@@ -85,8 +85,6 @@
 
 		onLoad() {
 			this.getList()
-
-			console.log(this.$imgBaseUrl, "城市周边")
 		},
 		methods: {
 			getList() {
