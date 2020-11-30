@@ -19,7 +19,7 @@
 				<AddInput btn="留下信息" class="add-comment" @add="add"/>
 
 				<!-- 评论内容 -->
-				<view class="comment-list" >
+<!-- 				<view class="comment-list" >
 					<view class="comment-icon">
 						<image src="/static/img/comment.png" mode=""></image>评论
 					</view>
@@ -38,7 +38,7 @@
 					</view>
 					
 					
-				</view>
+				</view> -->
 
 				
 

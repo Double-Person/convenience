@@ -43,7 +43,7 @@ export const house_detail = data => ajax({ url: '/house/house_detail', data, met
 //城市周边--转让出租-发布房屋
 export const add_house = data => ajax({ url: '/house/add_house', data, method: 'POST' });
 
-//城市周边--转让出租-发布房屋
+//城市周边--转让出租-发布房屋评论
 export const add_house_comment = data => ajax({ url: '/house/add_house_comment', data, method: 'POST' });
 
 
@@ -60,10 +60,32 @@ export const upLoadFile = (option) => {
 			icon: 'loading',
 			mask: true
 		})
+		
+		
+		let token = null
+		try {
+		    const value = uni.getStorageSync('CONVENIENCE_TOKEN');
+			
+		    if (value) {	
+				token = value
+		    }else {
+				if(true) {
+					
+				}
+			}
+		} catch (e) {
+		  
+			console.log(e)
+		}
+		
+		
 		uni.uploadFile({
-			url: baseUrl + '/uploadFile/file',
+			url: baseUrl + '/common/upload',
 			filePath: option.path,
 			name: option.name || 'file',
+			header: {
+			    'token': token
+			},
 			formData: {
 				// file: 'test'
 			},

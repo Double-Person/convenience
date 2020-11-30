@@ -3,7 +3,12 @@
 		<input type="text" v-model="publishtitle" placeholder="请输入标题" class="publishtitle" />
 		<textarea v-model="publishcontent" placeholder="添加文字描述......" />
 		<view class="addpic">
-			<gUpload ref='gUpload' :mode="imgList" @chooseFile='chooseFile' @imgDelete='imgDelete' :control='control' :columnNum="columnNum"></gUpload>
+		<!-- 	<gUpload ref='gUpload' :mode="imgList" @chooseFile='chooseFile' @imgDelete='imgDelete' :control='control' :columnNum="columnNum"></gUpload> -->
+		<view class="imgshow">
+			
+			<button class="imgbtn" @tap="uploadFileToServe"></button>
+			
+		</view>
 		</view>
 		<view class="phonum">
 			<view class="pic">
@@ -25,15 +30,16 @@
 </template>
 
 <script>
-	 import gUpload from "@/components/g-upload/g-upload.vue";
+	 
 	 import {
 	 	add_job,
-		upload
+	
+		upLoadFile
 	 } from '@/api/api.js'
 
 	export default {
 		components:{
-			gUpload
+			
 			
 		},
 		data() {
@@ -44,83 +50,33 @@
 				   title: 'Hello',
 				        control: true,
 				        columnNum: 4,
-				        imgList: []
+				        imgList: [],//图片数组
 				
 			};
 		},
 		methods:{
 			publish(){
-				add_job(this.publishtitle,this.publishcontent,this.publishphonenumber).then(res=>{
+				add_job({title:this.publishtitle,centent:this.publishcontent,images:"",phone:this.publishphonenumber}).then(res=>{
 					console.log(res)
 				})
 				
 			},
-			
-			
-			
-			
-			
-			
-			    //点击上传控件上传
-			      uploadImg() {
-					
-			        this.$refs.gUpload.uploadImg()
-			      },
-			
-			      /*
-			      上传后返回的值：
-			      list：上传后图片数组
-			      v：返回当前上传图片的临时路径
-			      */
-			      chooseFile(list, v) {
-					
-			        console.log("上传图片_list：", list)
-			        console.log("上传图片_v：", v);
-			        this.uploadFileToServe(v)
-			      },
-			
-			      /*
-			      删除图片：
-			      list：删除返回删除后剩余的图片数组
-			      eq：返回删除的数组
-			      */
-			      imgDelete(list, eq) {
-			        console.log("删除图片_list：", list)
-			        console.log("删除图片_eq：", eq)
-			      },
-			
-			      //控件内外部切换
-			      switch1Change(e) {
-			        this.control = !this.control
-			      },
-			
-			      //图片行个数切换
-			      switch2Change(e) {
-			        this.columnNum = this.columnNum == 3 ? '4' : '3'
-			      },
-			
 			      /*
 			      执行上传服务：
 			      urlList：要上传的图片：数组类型
 			      */
-			     uploadFileToServe(urlList) {
-					 
-			        if (!urlList || urlList.length <= 0) {
-			          return
-			        };
-			        for (let i = 0; i < urlList.length; i++) {
-			          uni.uploadFile({
-			            url: 'https://www.example.com/upload', //仅为示例，非真实的接口地址
-			            filePath: urlList[i],
-			            name: 'file',
-			            formData: {
-			              'user': 'test'
-			            },
-			            success: (uploadFileRes) => {
-			              console.log(uploadFileRes.data);
-			            }
-			          });
-			        }
+			     uploadFileToServe() {	
+					uni.chooseImage({
+					    success: (chooseImageRes) => {
+					        const tempFilePaths = chooseImageRes.tempFilePaths;
+					        upLoadFile({path: tempFilePaths[0]}).then(res => {
+					        	console.log(res)
+								
+					        })
+					    }
+					});
+					
+			     
 			      }	
 		}
 	}
@@ -186,5 +142,15 @@
 		border: 1px solid #ccc;
 		text-indent: 0.5rem;
 		margin-bottom:20rpx;
+	}
+
+	.imgshow{
+		.imgbtn{
+			width: 140rpx;
+			height: 140rpx;
+			background: url(../../static/img/postmessage/矩形%20751@2x.png) no-repeat;
+			background-size: cover;
+		}
+		
 	}
 </style>

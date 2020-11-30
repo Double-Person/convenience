@@ -26,7 +26,6 @@
 			<view class="comment-icon">
 				<image src="/static/img/comment.png" mode=""></image>评论
 			</view>
-		
 			<view v-for="item in comments" :key="item.id">
 				<view class="fl jc-between al-center user-info">
 					<view class="header-name">
@@ -63,7 +62,7 @@
 			</view>
 		</wyb-popup>
 
-		<wyb-popup ref="privacypopup" type="center" height="800" width="500" radius="6" :showCloseIcon="true" style="position: relative;">
+		<wyb-popup ref="privacypopup" type="center" height="800" width="500" radius="6" :showCloseIcon="true" style="position: relative;" :scrollY="true">
 			<view class="popup-content ">
 				<view class="privacytitle">
 					隐私协议文字标题
@@ -100,6 +99,9 @@
 			<button class="sendcommont" @tap="sendcommonts">发送</button>
 
 		</view>
+		<view class="" style="height: 200rpx;">
+			
+		</view>
 		
 
 	</view>
@@ -108,8 +110,8 @@
 <script>
 	import wybPopup from '@/components/wyb-popup/wyb-popup.vue';
 	import {
-		job_detail,
-		add_job_comment
+		job_detail,//工作详情
+		add_job_comment,//招聘工作评论
 	} from '@/api/api.js'
 	export default {
 		components: {
@@ -123,11 +125,12 @@
 				comments:[],//评论,
 				sendcommontid:"",//招聘id
 				commontconent:"",//评论内容
+				
+				
 
 			};
 		},
 		onLoad(id) {
-			
 			this.sendcommontid=id.id;
 			console.log(this.sendcommontid);
 			job_detail(id).then(res => {
@@ -137,31 +140,23 @@
 				this.titlename=res.data.title;
 				this.comments=res.data.comment;
 			})
-		
-			
-
-
-
 		},
+	
 		methods: {
 			setthetop() {
 				this.$refs.popup.show()
 			},
 			showprivacy() {
 				this.$refs.privacypopup.show()
-
 			},
 			agree(){
 				this.$refs.privacypopup.close()
-				
 			},
 			sendcommonts(){
-				console.log(this.sendcommontid,this.commontconent)
-				add_job_comment(this.sendcommontid,this.commontconent).then(res=>{
+				console.log(this.sendcommontid,this.commontconent)	
+				add_job_comment({job_id:this.sendcommontid,content:this.commontconent}).then(res=>{
 					console.log(res)
-				})
-				
-				
+				})			
 			}
 		}
 	}

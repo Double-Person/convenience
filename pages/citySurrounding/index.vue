@@ -28,19 +28,12 @@
 	import {
 		houseIndex,
 		house_detail,
-		add_house,
-		add_house_comment,
 
-		job,
-		add_job,
+		job,		
 		job_detail,
-		add_job_comment,
 
 		market,
 		market_detail,
-		add_market,
-		add_market_comment,
-
 	} from '@/api/api.js'
 
 	export default {
@@ -94,20 +87,10 @@
 			//工作列表
 			_job() {
 				job(this.where).then(res => {
-
 					this.joblist = res.data
 				})
 			},
-			//工作详情
-			/* _job_detail(){
-				job_detail(id).then(res=>{
-					console.log(res)
-				})
-				
-			}, */
-
-
-
+		
 			//市场列表
 			_market() {
 				market(this.where).then(res => {
