@@ -1,26 +1,28 @@
 <template>
-	<view class="surrounding">
-	<scroll-view scroll-y="true" >
-		<!-- 标题栏 -->
-		<view class="fl al-center nav-bar">
-			<view v-for="(item,index) in navBar" :key="index" class="nav-bar-item" @click="handelTitle(index)">
-				<view class="title">{{item.label}}</view>
-				<view class="border" :class="active == index ? 'active' : ''"></view>
+	<!-- <scroll-view :refresher-threshold="80" scroll-y="true"> -->
+		<view class="surrounding">
+
+			<!-- 标题栏 -->
+			<view class="fl al-center nav-bar">
+				<view v-for="(item,index) in navBar" :key="index" class="nav-bar-item" @click="handelTitle(index)">
+					<view class="title">{{item.label}}</view>
+					<view class="border" :class="active == index ? 'active' : ''"></view>
+				</view>
 			</view>
+
+			<!-- 二手市场 -->
+			<SecondaryMarket v-show="active === 0" :marketlist="navBar[active].list" />
+
+			<!-- 招聘求职 -->
+			<JobHunting v-show="active === 1" :joblist="navBar[active].list" />
+
+			<!-- 转让出租 -->
+			<TransferRent v-show="active === 2" :houselist="navBar[active].list" />
+
+
+
 		</view>
-		
-		<!-- 二手市场 -->
-		<SecondaryMarket v-show="active === 0" :marketlist="marketlist" />
-		
-		<!-- 招聘求职 -->
-		<JobHunting v-show="active === 1" :joblist="joblist" />
-		
-		<!-- 转让出租 -->
-		<TransferRent v-show="active === 2" :houselist="houselist" />
-		
-		
-	</scroll-view>
-	</view>
+	<!-- </scroll-view> -->
 </template>
 
 <script>
@@ -32,7 +34,7 @@
 		houseIndex,
 		house_detail,
 
-		job,		
+		job,
 		job_detail,
 
 		market,
@@ -45,22 +47,28 @@
 			JobHunting,
 			TransferRent
 		},
-		mixins:[mixin],
+		mixins: [mixin],
 		data() {
 			return {
 				active: 0,
 				navBar: [{
 						value: 0,
+						page: 1,
+						finshed: false,
 						label: '二手市场',
 						list: []
 					},
 					{
 						value: 1,
+						page: 1,
+						finshed: false,
 						label: '招聘求职',
 						list: []
 					},
 					{
 						value: 2,
+						page: 1,
+						finshed: false,
 						label: '转让出租',
 						list: []
 					},
@@ -68,79 +76,84 @@
 				marketlist: [], //市场列表
 				houselist: [], //房屋列表
 				joblist: [], //工作列表
-				where: {
-					page: 1,
-					limit: 2,
-					
-				},
-				finshed: false,
+				limit: 2,
+
+
 			}
 
 		},
-		
+
 		onLoad() {
 			this.getList()
-			
+
 			console.log(this.$imgBaseUrl, "城市周边")
 		},
 		methods: {
-			getList(){
-				/* if(this.finshed) return false; */
-				market(this.where).then(res => {
-					this.marketlist = res.data;
-					/* this.marketlist.push(res.data); */
-					/* if(this.marketlist < this.where.limit) {
-						this.finshed = true
-					} */
-					this.where.page+=1;
-					
-				
-					console.log(this.where.page)
-				})
-					
-				
-				
-				
+			getList() {
+				let {
+					active
+				} = this;
+				this.handelTitle(active)
 			},
 			//房屋列表
-			_houseIndex() {
-				houseIndex(this.where).then(res => {
-					this.houselist = res.data
-					
+			_houseIndex(obj) {
+				houseIndex(obj).then(res => {
+					this.commitDataFn(res.data)
 				})
 			},
 			//工作列表
-			_job() {
-				job(this.where).then(res => {
-					this.joblist = res.data
+			_job(obj) {
+				job(obj).then(res => {
+					this.commitDataFn(res.data)
 				})
 			},
-		
-			//市场列表
-		/* 	_market() {
-				market(this.where).then(res => {
-					console.log(res)
-					this.marketlist = res.data
-				})
-			}, */
 
-			handelTitle(index) {
-				this.active = index
+			//市场列表
+			_market(obj) {
+				market(obj).then(res => {
+					this.commitDataFn(res.data)
+
+				})
+			},
+
+			commitDataFn(data) {
+				let list = this.navBar[this.active].list;
+				list.push(...data)
+
+
+				if ((data.length === 0) || (data.length < this.limit)) {
+					console.log(this.navBar[this.active].page, '==========', data.length)
+					this.navBar[this.active].finshed = true
+				} else {
+					this.navBar[this.active].page += 1
+				}
+
+			},
+
+			handelTitle(index = 0) {
+				this.active = index;
+				if (this.navBar[index].finshed == true) {
+					uni.showToast({
+						title: '暂无更多数据',
+						icon: 'none'
+					})
+					return false
+				}
+				let obj = {
+					page: this.navBar[index].page,
+					limit: this.limit
+				}
 				switch (index) {
 					case 0:
-						this._market()
+						this._market(obj)
 						break;
 					case 1:
-					this._job()
-						
+						this._job(obj)
+
 						break;
 					case 2:
-						this._houseIndex()
+						this._houseIndex(obj)
 						break;
-
-
-
-
 				}
 			}
 		}

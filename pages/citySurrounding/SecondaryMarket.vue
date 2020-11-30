@@ -6,7 +6,7 @@
 			</view>
 			<view class="fl jc-between list-item"  @tap="toinfo(item.id)">
 				<view v-for="(data,pic) in item.images" :key="pic" class="item">
-					<image class="img" :src="$imgBaseUrl+data"></image>
+					<image class="img" :src="$imgBaseUrl + data"></image>
 				</view>
 			</view>
 			<view class="publish-time">
@@ -28,18 +28,7 @@
 			UserTitle,
 			
 		},
-		data(){
-			return{	
-			}
-		},
-		onLoad() {	
-			
-			
-		},
-		onShow() {
-			
-			
-		},
+				
 		methods:{
 			toinfo(id){
 				uni.navigateTo({
