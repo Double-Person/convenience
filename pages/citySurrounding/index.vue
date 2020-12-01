@@ -1,27 +1,27 @@
 <template>
 	<!-- <scroll-view :refresher-threshold="80" scroll-y="true"> -->
-		<view class="surrounding">
+	<view class="surrounding">
 
-			<!-- 标题栏 -->
-			<view class="fl al-center nav-bar">
-				<view v-for="(item,index) in navBar" :key="index" class="nav-bar-item" @click="handelTitle(index)">
-					<view class="title">{{item.label}}</view>
-					<view class="border" :class="active == index ? 'active' : ''"></view>
-				</view>
+		<!-- 标题栏 -->
+		<view class="fl al-center nav-bar">
+			<view v-for="(item,index) in navBar" :key="index" class="nav-bar-item" @click="handelTitle(index)">
+				<view class="title">{{item.label}}</view>
+				<view class="border" :class="active == index ? 'active' : ''"></view>
 			</view>
-
-			<!-- 二手市场 -->
-			<SecondaryMarket v-show="active === 0" :marketlist="navBar[active].list" />
-
-			<!-- 招聘求职 -->
-			<JobHunting v-show="active === 1" :joblist="navBar[active].list" />
-
-			<!-- 转让出租 -->
-			<TransferRent v-show="active === 2" :houselist="navBar[active].list" />
-
-
-
 		</view>
+
+		<!-- 二手市场 -->
+		<SecondaryMarket v-show="active === 0" :marketlist="navBar[active].list" />
+
+		<!-- 招聘求职 -->
+		<JobHunting v-show="active === 1" :joblist="navBar[active].list" />
+
+		<!-- 转让出租 -->
+		<TransferRent v-show="active === 2" :houselist="navBar[active].list" />
+
+
+
+	</view>
 	<!-- </scroll-view> -->
 </template>
 
@@ -88,10 +88,7 @@
 		},
 		methods: {
 			getList() {
-				let {
-					active
-				} = this;
-				this.handelTitle(active)
+				this.handelTitle(this.active)
 			},
 			//房屋列表
 			_houseIndex(obj) {
