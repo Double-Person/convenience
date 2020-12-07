@@ -1,12 +1,15 @@
 <template>
 	<view class="content">
+		
 		<view class="aa">
 			<view class="tophead">
-
+				
+			
 			</view>
-			<uni-nav-bar class="navbarindex" background-color="#FE4555">
+			<uni-nav-bar class="navbarindex" background-color="#FE4555" border="" fixed="true" >
+			
 				<view class="centersearch">
-					<input type="text" value="" placeholder="站内/站外搜索" />
+					<input type="text" value="" placeholder="站内/站外搜索" placeholder-class="cl"/>
 					<view class="searchicon">
 						<image src="/static/img/index/sousuo@2x.png" mode=""></image>
 					</view>
@@ -17,7 +20,7 @@
 				</view>
 				<view slot="right" class="rightpic">
 					<image src="/static/img/index/dingwei@2x.png" mode=""></image>
-					<text>人民南路</text>
+					<text>{{myaddress ? myaddress : "获取失败"}}</text>
 				</view>
 			</uni-nav-bar>
 
@@ -66,7 +69,7 @@
 			</view>
 
 			<scroll-view scroll-x="true" class="scrollist">
-				<view class="couponitem" v-for="(item,index) in 8" :key="index">
+				<view class="couponitem" v-for="(item,index) in 8" :key="index" @tap="togetquanlist">
 					<view class="fl couponlist" style="position: relative;justify-content: center;">
 						<text style="font-size:20rpx;color:#FF6B5C;" class="quan">券</text>
 						<view class="fl al-center" style="color: white;flex-direction: column;position: absolute;top: 5rpx;margin: 0 auto;">
@@ -78,11 +81,6 @@
 						</view>
 
 					</view>
-
-
-
-
-
 				</view>
 			</scroll-view>
 		</view>
@@ -98,35 +96,34 @@
 			</view>
 
 			<scroll-view scroll-x="true" class="scrollist">
-				<view class="couponitem ershou" v-for="(item,index) in 8" :key="index">
-					<image src="/static/img/house.png" mode=""></image>
-
+				<view class="couponitem ershou" v-for="(item,index) in this.secondmarket" :key="index">
+					<image v-if="item.img" :src="$imgBaseUrl+item.img" mode="" @tap="tomarketinfo(item.id)"></image>
+					<image v-else src="../../static/img/index/1606791183(1).jpg" mode="" @tap="tomarketinfo(item.id)"></image>
 				</view>
 			</scroll-view>
 		</view>
+		
+		
+		
+		
+		<Loveshare />
 
 
 
-		<view class="">
+<!-- 		<view class="">
 			<view class="bottomtitle">
 				我爱分享
 			</view>
 			<view class="pubuliu">
 				<waterfallsFlow :list="list">
-
-					<view v-for="(item, index) of list" :key="index" slot="slot{{index}}">
+					<template v-slot:default="item" >
 						<view class="cnt">
-							<view class="text">{{ item.text }}</view>
-						</view>
-					</view>
-					<template v-slot:default="item">
-						<view class="cnt">
-							<view class="text" style="font-size: 20rpx;">{{ item.text }}</view>
+							<view class="text over-ellipsis-2" style="font-size: 20rpx;">{{ item.text }}</view>
 						</view>
 					</template>
 				</waterfallsFlow>
 			</view>
-		</view>
+		</view> -->
 
 
 	</view>
@@ -137,9 +134,13 @@
 	import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue";
 	import uniSwiperDot from "@/components/uni-swiper-dot/uni-swiper-dot.vue";
 	import uniNoticeBar from '@/components/uni-notice-bar/uni-notice-bar.vue';
-	import waterfallsFlow from "@/components/maramlee-waterfalls-flow/maramlee-waterfalls-flow.vue";
+	/* import waterfallsFlow from "@/components/maramlee-waterfalls-flow/maramlee-waterfalls-flow.vue"; */
 	import adTabbar from '@/components/andy-ADTabbar/andy-ADTabbar.vue';
 	import adTabbarItem from '@/components/andy-ADTabbar/andy-ADTabbarItem.vue';
+	import Loveshare from './loveshare.vue'
+	import {
+			market,
+	} from '@/api/api.js'
 
 
 	export default {
@@ -147,52 +148,55 @@
 			uniNavBar,
 			uniSwiperDot,
 			uniNoticeBar,
-			waterfallsFlow,
+			/* waterfallsFlow, */
 			adTabbar,
 			adTabbarItem,
+			Loveshare
+			
 		},
 		mixins:[mixin],
 
 		data() {
 			return {
+				myaddress:"",//地址
 				logolist: [{
-						img: require("../../static/img/index/images/chengshi@2x_01.png"),
+						img: require("@/static/img/index/images/chengshi@2x_01.png"),
 						name: "生活维修",
-						url: "",
+						url: "/pages/lifemaintenance/index",
 
 					},
 					{
-						img: require("../../static/img/index/images/chengshi@2x_03.png"),
+						img: require("@/static/img/index/images/chengshi@2x_03.png"),
 						name: "生活信息",
 						url: "",
 					},
 					{
-						img: require("../../static/img/index/images/chengshi@2x_05.png"),
+						img: require("@/static/img/index/images/chengshi@2x_05.png"),
 						name: "社保查询",
 						url: "",
 					},
 					{
-						img: require("../../static/img/index/images/chengshi@2x_07.png"),
+						img: require("@/static/img/index/images/chengshi@2x_07.png"),
 						name: "违章查询",
 						url: "",
 					},
 					{
-						img: require("../../static/img/index/images/chengshi@2x_14.png"),
+						img: require("@/static/img/index/images/chengshi@2x_14.png"),
 						name: "同城商圈",
 						url: "",
 					},
 					{
-						img: require("../../static/img/index/images/chengshi@2x_15.png"),
+						img: require("@/static/img/index/images/chengshi@2x_15.png"),
 						name: "生活影视",
 						url: "/pages/lifeandtv/lifeandtv",
 					},
 					{
-						img: require("../../static/img/index/images/chengshi@2x_13.png"),
+						img: require("@/static/img/index/images/chengshi@2x_13.png"),
 						name: "生活圈",
 						url: "/pages/lifecircle/lifecircle",
 					},
 					{
-						img: require("../../static/img/index/images/chengshi@2x_12.png"),
+						img: require("@/static/img/index/images/chengshi@2x_12.png"),
 						name: "城市周边",
 						url: "/pages/citySurrounding/index",
 					}
@@ -213,7 +217,7 @@
 					page: 1, 
 					limit: 10,
 				},
-				list: [{
+			/* 	list: [{
 						id: 1,
 						image_url: require("../../static/img/index/images/1606363388(1).jpg"),
 
@@ -265,17 +269,56 @@
 					},
 
 
-				],
-
+				], */
+                secondmarket:[],//二手市场列表
 
 			}
 		},
 		onLoad() {
-			console.log(this.$imgBaseUrl, 222222)
-			
-
+			/* console.log(this.$imgBaseUrl, 222222) */
+			this.getmarketlist();
+		
 		},
-		methods: {
+		mounted() {
+				this.getaddress();
+			
+		},
+		methods: {			//
+			togetquanlist(){
+				uni.navigateTo({
+					url:"./drawquan"
+				})
+				
+			},
+			getaddress(){
+				let that=this;
+				uni.getLocation({
+				    type: 'wgs84',
+					　 geocode:true,
+				    success: function (res) {
+						const nowaddress=res.address.street;
+						that.myaddress=nowaddress
+						
+						console.log(that.myaddress)
+				    },fail(err) {
+						console.log(err)
+				    	
+				    }
+				});
+			
+			},
+			
+			onTabItemTap(e){
+				
+				if(e.pagePath==""){
+					uni.showToast({
+						title:"暂未开发",
+						icon:"none"
+					})
+				}
+			},
+						
+			
 			getList() {
 				console.log('获取数据列表')
 			},
@@ -285,12 +328,44 @@
 			tootherpage(url) {
 				uni.navigateTo({ url: url })
 			},
+			// 二手市场跳转
+			tomarketinfo(id){
+				uni.navigateTo({
+					url:"/pages/citySurrounding/smarketinfo?id="+id
+					
+				})
+			},
 			//跳转签到
 			tosingin() {
 				uni.navigateTo({
 					url: "/pages/signin/signin",
 				})
 			},
+			getmarketlist(){
+				market(this.parmas).then(res=>{
+					console.log(res)
+					let arr=res.data.map(item=>{
+						return item.images[0]
+					})
+					let idarr=res.data.map(item=>{
+						return item.id
+					})
+					console.log(idarr)
+				this.secondmarket=arr.map((item,index)=>{
+						return {
+							img:item,
+							id:idarr[index]
+						}
+					})
+				
+				
+					
+					
+					
+				
+					
+				})
+			}
 					
 			
 
@@ -299,16 +374,25 @@
 </script>
 
 <style scoped lang="scss">
+	.cl{
+		color: white;
+		font-size: 28rpx;
+	}
 	/deep/.uni-navbar__header {
 		line-height: 0 !important;
 	}
 
 	.tophead {
 		height: var(--status-bar-height);
+		width: 100%;
 		background: #FE4555;
-	}
+		position: fixed;
+		top: 0;
+		z-index: 999999;
+		}
 
 	.navbarindex {
+		margin-top:  var(--status-bar-height);
 
 		.centersearch {
 			position: relative;
@@ -470,6 +554,7 @@
 		.scrollist {
 			width: 700rpx;
 			white-space: nowrap;
+			
 
 			.couponitem {
 
@@ -488,13 +573,13 @@
 
 	}
 
-	.bottomtitle {
+	/* .bottomtitle {
 		font-size: 26rpx;
 		font-weight: bold;
 		line-height: 80rpx;
 		margin-left: 41rpx;
 
-	}
+	} */
 
 	.pubuliu {
 		padding: 0 55rpx;

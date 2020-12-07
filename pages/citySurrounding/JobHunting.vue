@@ -3,7 +3,7 @@
 		<view v-for="(item, index) in joblist" :key="index" class="list">
 			<!-- 用户头部信息 -->
 			<view class="user-title">
-				<UserTitle top :item="item.user"></UserTitle>
+				<UserTitle top :item="item"></UserTitle>
 			</view>
 			<view class="list-item">
 				<view class="comment-content">
@@ -13,34 +13,10 @@
 					<image :src="$imgBaseUrl+data" mode="" v-for="(data, pic) in item.images" :key="pic" class="fl jc-between fl-warp"></image>
 				</view>
 
-				<view class="access">326人浏览</view>
+				<view class="access">{{item.hit}}人浏览</view>
 
 				<!-- 评论 -->
 				<AddInput btn="留下信息" class="add-comment" @add="add"/>
-
-				<!-- 评论内容 -->
-				<!-- <view class="comment-list" >
-					<view class="comment-icon">
-						<image src="/static/img/comment.png" mode=""></image>评论
-					</view>
-
-					<view v-for="i in 3" :key="i">
-						<view class="fl jc-between al-center user-info">
-							<view class="header-name">
-								<image src="/static/img/house.png" mode=""></image>用户名
-							</view>
-						
-							<view class="publish-time">2020.07.30</view>
-						</view>
-											
-						<view class="content">求联系，电话11111111111</view>
-						
-					</view>
-					
-					
-				</view> -->
-
-				
 
 			</view>
 
@@ -53,12 +29,16 @@
 <script>
 	import UserTitle from "./UserTitle.vue";
 	import AddInput from "@/components/addInput/AddInput.vue"
+	import {add_job_comment} from "@/api/api.js"
 	export default {
 		props:["joblist"],
 		components: {
 			UserTitle,AddInput
 		},
+	
 		methods: {
+		
+		
 			add(val) {
 				console.log(val)
 			},

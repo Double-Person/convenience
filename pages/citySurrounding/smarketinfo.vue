@@ -6,23 +6,23 @@
 				<button @tap="setthetop">设置置顶</button>
 
 			</view>
-			
+
 			<view class="coupons">
 				<scroll-view scroll-x="true" class="scrollist">
-					<view class="couponitem ershou" v-for="(item,index) in pic" :key="index">
+					<view class="couponitem ershou" v-for="(item,index) in pic" :key="index" @tap="photoclick">
 						<image :src="$imgBaseUrl+item" mode=""></image>
 					</view>
 				</scroll-view>
 			</view>
-			
+
 			<view class="concent">
 				<view class="article">
-				{{this.contents}}
+					{{this.contents}}
 				</view>
 
 			</view>
 		</view>
-		<view class="comment-list" >
+		<view class="comment-list">
 			<view class="comment-icon">
 				<image src="/static/img/comment.png" mode=""></image>评论
 			</view>
@@ -31,16 +31,16 @@
 					<view class="header-name">
 						<image :src="item.user.avatar" mode=""></image>{{item.user.nickname}}
 					</view>
-				
-				<!-- 	<view class="publish-time">{{new Date(item.createtime)}}</view> -->
+
+					<!-- 	<view class="publish-time">{{new Date(item.createtime)}}</view> -->
 					<view class="publish-time">{{new Date(item.createtime).getFullYear() + '-' + (new Date(item.createtime).getMonth() + 1) + '-' + new Date(item.createtime).getDate() + ' ' + new Date(item.createtime).getHours() + ':' + new Date(item.createtime).getMinutes() + ':' + new Date(item.createtime).getSeconds()}}</view>
 				</view>
-									
+
 				<view class="content">{{item.content}}</view>
-				
+
 			</view>
-			
-			
+
+
 		</view>
 		<wyb-popup ref="popup" type="center" height="600" width="500" radius="6" :showCloseIcon="true">
 			<view class="popup-content settopprop">
@@ -62,47 +62,20 @@
 			</view>
 		</wyb-popup>
 
-		<wyb-popup ref="privacypopup" type="center" height="800" width="500" radius="6" :showCloseIcon="true" style="position: relative;" :scrollY="true">
-			<view class="popup-content ">
-				<view class="privacytitle">
-					隐私协议文字标题
+		
 
-				</view>
-				<view class="privacycontent">
-
-					文字内容文字内容文字内容文字内容文字内容文字文字内容
-					文字内容文字内容文字内容文字内容文字内容文字文字内文
-					字内容文字文字内容文字内容文字内容内容文字内容文字文
-					字内容文字内容文字内容文字内容文字内容文字文字内容文
-					字内容文字文字内容文字内容文字内容内容文字内
-					文字内容文字内容文字内容文字内容文字内容文字文字内容
-					文字内容文字文字内容文字内容文字内容内容文字内容文字
-					文字内容文字内容文字内容文字内容文字内容文字文字内文
-					字内容文字文字内容
-
-
-				</view>
-				<view class="privacybtn">
-					<button class="no">不同意</button>
-					<button class="yes" @tap=agree>同意</button>
-
-				</view>
-
-
-
-			</view>
-		</wyb-popup>
+		
 
 
 		<view class="sendmessage">
-			<input type="text" v-model="commontconent" placeholder="说些什么吧" @tap="showprivacy"/>
+			<input type="text" v-model="commontconent" placeholder="说些什么吧" />
 			<button class="sendcommont" @tap="sendcommonts">发送</button>
 
 		</view>
 		<view class="" style="height: 200rpx;">
-			
+
 		</view>
-		
+
 
 	</view>
 </template>
@@ -110,8 +83,8 @@
 <script>
 	import wybPopup from '@/components/wyb-popup/wyb-popup.vue';
 	import {
-		market_detail,//市场详情
-		add_market_comment,//市场工作评论
+		market_detail, //市场详情
+		add_market_comment, //市场工作评论
 	} from '@/api/api.js'
 	export default {
 		components: {
@@ -119,44 +92,81 @@
 		},
 		data() {
 			return {
-				pic:[],//图片数组
-				contents:"",//产品描述
-				titlename:"",//标题,
-				comments:[],//评论,
-				sendcommontid:"",//招聘id
-				commontconent:"",//评论内容
-				
-				
+				pic: [], //图片数组
+				contents: "", //产品描述
+				titlename: "", //标题,
+				comments: [], //评论,
+				sendcommontid: "", //招聘id
+				commontconent: "", //评论内容
+
+
+
 
 			};
 		},
 		onLoad(id) {
-			this.sendcommontid=id.id;
+			this.sendcommontid = id.id;
+			this.getdatalist()
+
 			console.log(this.sendcommontid);
-			market_detail(id).then(res => {
-				console.log(res)
-				this.pic=res.data.images;
-				this.contents=res.data.content;
-				this.titlename=res.data.title;
-				this.comments=res.data.comment;
-			})
+
 		},
-	
+		
+
+
 		methods: {
+			//图片预览
+			photoclick() {
+				let arr = this.pic.map(item=>{
+				return this.$imgBaseUrl+item
+				});
+				uni.previewImage({
+					/* current: index, //预览图片的下标 */
+					urls: arr //预览图片的地址，必须要数组形式，如果不是数组形式就转换成数组形式就可以
+				});
+
+			},
 			setthetop() {
 				this.$refs.popup.show()
 			},
-			showprivacy() {
-				this.$refs.privacypopup.show()
+
+			getdatalist() {
+				market_detail({
+					id: this.sendcommontid
+				}).then(res => {
+					console.log(res)
+					this.pic = res.data.images;
+					this.contents = res.data.content;
+					this.titlename = res.data.title;
+					this.comments = res.data.comment;
+				})
 			},
-			agree(){
+
+			agree() {
 				this.$refs.privacypopup.close()
 			},
-			sendcommonts(){
-				console.log(this.sendcommontid,this.commontconent)	
-				add_market_comment({job_id:this.sendcommontid,content:this.commontconent}).then(res=>{
+			sendcommonts() {
+				console.log(this.sendcommontid, this.commontconent)
+				add_market_comment({
+					market_id: this.sendcommontid,
+					content: this.commontconent
+				}).then(res => {
 					console.log(res)
-				})			
+					if (res.code == 1) {
+						uni.showToast({
+							title: "发布成功",
+							icon: "",
+						})
+						this.commontconent = "";
+						this.getdatalist();
+					} else {
+						uni.showToast({
+							title: "发布失败",
+							icon: "",
+						})
+
+					}
+				})
 			}
 		}
 	}
@@ -165,19 +175,21 @@
 <style lang="scss" scoped>
 	.coupons {
 		border-bottom: 5rpx solid #F6F6F6;
+
 		.scrollist {
 			width: 700rpx;
 			white-space: nowrap;
+
 			.couponitem {
 				display: inline-block;
 				margin-right: 40rpx;
-				border-radius: 30rpx;		
+				border-radius: 30rpx;
 				overflow: hidden;
-			
+
 			}
-	
+
 		}
-	
+
 	}
 
 	.main {
@@ -305,18 +317,19 @@
 		}
 
 	}
+
 	.comment-list {
 		width: 595rpx; //  671px;
 		padding: 0 38rpx;
 		border-top: 2rpx solid #f6f6f6;
 		margin-top: 48rpx;
-	
+
 		.comment-icon {
 			font-size: 20rpx;
 			font-weight: 400;
 			color: #2e2e2e;
 			margin: 18rpx 0 43rpx 0;
-	
+
 			image {
 				width: 25rpx;
 				height: 17rpx;
@@ -324,12 +337,13 @@
 				margin-right: 5rpx;
 			}
 		}
-	
+
 		.user-info {
 			width: 596rpx;
 			font-size: 16rpx;
 			font-weight: 400;
 			color: #646464;
+
 			.header-name {
 				image {
 					width: 42rpx;
@@ -339,11 +353,11 @@
 					margin-right: 15rpx;
 				}
 			}
-	
-	
+
+
 		}
-		
-		.content{
+
+		.content {
 			font-size: 16rpx;
 			color: #646464;
 			margin: 15rpx 0 0 0;
@@ -351,13 +365,13 @@
 			border-bottom: 2rpx solid #f6f6f6;
 		}
 	}
-	.sendcommont{
+
+	.sendcommont {
 		width: 140rpx;
 		font-size: 30rpx;
 		padding: 0;
 		margin-left: 30rpx;
-		background-color:#F86D66;
+		background-color: #F86D66;
 		color: white;
 	}
-	
 </style>

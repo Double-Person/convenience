@@ -6,11 +6,12 @@
 					我的
 				</view>
 				<view class="avatar">
-					<view class="pic">
-						<image src="../../static/andy-ADTabbar/my-hover.png" mode=""></image>
+					<view class="pic" @tap="tochangeuser">
+						<image :src="userinfolist.avatar" mode=""></image>
 					</view>
 					<view class="nickname">
-						撒大声地
+						<text>{{userinfolist.username}}</text>
+						<text>等级:长工</text>
 					</view>
 				</view>
 			</view>
@@ -60,6 +61,10 @@
 		
 		},
 		onLoad() {
+		
+		},
+		mounted() {
+			this.userinfolist=uni.getStorageSync('CONVENIENCE_INDO', "userinfo")
 		},
 		methods:{
 			topages(url){
@@ -68,47 +73,59 @@
 				})
 			},
 			toconpages(url){
-				alert(1)
+				
 				uni.navigateTo({
 					url:url
 				})
 				
+			},
+			//前往个人中心
+			tochangeuser(){
+				uni.navigateTo({
+					url:"./userinfochange"
+				})
 			}
+			
 		},
 		data() {
 			return {
-				datalist: [{
+				userinfolist:{},
+				datalist: 
+				[
+					{
 						img: require("../../static/img/login/renzhen.png"),
-						name: "资质认证"
+						name: "我的认证"
 					},
 					{
 						img: require("../../static/img/login/chaxun.png"),
-						name: "资质查询"
+						name: "我的服务",
+						url:"/pages/personalcenter/myservices"	
 					},
 					{
 						img: require("../../static/img/login/fabu.png"),
-						name: "我的发布"
+						name: "我的发布",
+						url:"/pages/personalcenter/myrelease"	
 					},
 					{
 						img: require("../../static/img/login/tiezi.png"),
-						name: "帖子管理",
-						url:"/pages/postamessage/postamessage"
+						name: "我的短视频"
 					},
 					{
 						img: require("../../static/img/login/wujiaoxing.png"),
-						name: "我的收藏"
+						name: "我的分享",
+						url:"/pages/postamessage/postamessage"
 					},
 					{
 						img: "",
-						name: ""
+						name: "",
+						url:""
 					},
-
-
 				],
                 conlist:[
 					{
 						img:require("../../static/img/user/house.png"),
-						title:"平台建设"
+						title:"平台建设",
+						url:"/pages/personalcenter/construction"
 					},
 					{
 						img:require("../../static/img/user/hand.png"),
@@ -121,8 +138,14 @@
 					},
 					{
 						img:require("../../static/img/user/mn_jifen_fill@2x.png"),
-						title:"我的积分"
-					}
+						title:"我的积分",
+						url:"/pages/personalcenter/myintegral"
+					},
+					{
+						img:require("../../static/img/user/icon905.png"),
+						title:"密码管理"
+					},
+					
 				],
 			    sharelist:[
 					{
@@ -133,14 +156,6 @@
 						img:"../../static/img/user/weixinpengyou.png",
 						title:"微信朋友"
 					},
-					{
-						img:"../../static/img/user/QQ.png",
-						title:"QQ"
-					},
-					{
-						img:"../../static/img/user/sinaweibo.png",
-						title:"更多"
-					}
 				]
 			};
 		}
@@ -179,11 +194,15 @@
 					}
 
 				}
-
 				.nickname {
 					color: white;
 					padding-left: 40rpx;
-
+					font-size:30rpx;
+                    display: flex;
+					flex-direction: column;
+					text{
+						line-height:50rpx;
+					}
 				}
 
 			}

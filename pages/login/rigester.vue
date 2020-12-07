@@ -5,24 +5,34 @@
 				
 			</view>
 		<view class="ipt">
-			<input type="text" placeholder="请输入手机号码" class="pho"/>
-			<input type="password"  placeholder="请输入密码" class="psw"/>
-			<input type="password"  placeholder="请确认密码" class="psw"/>
+				<input type="text" v-model="parmas.username" placeholder="请输入用户名" class="pho"/>
+			<input type="text" v-model="parmas.mobile"  onblur="rechecking" placeholder="请输入手机号码" class="pho"/>
+			<input type="password" v-model="parmas.password"  placeholder="请输入密码" class="psw"/>
+			<input type="password"  v-model="surepwd"  placeholder="请确认密码" class="psw"/>
 			
 		</view>
-			<button type="default" class="loginbtn" >注册</button>
+			<button type="default" class="loginbtn"  @tap="registerbtn">注册</button>
 			<view class="" style="display: flex;justify-content: center;">
 				<text @tap="tologin" class="rigiester">直接登录</text>
-				
 			</view>
 		
 	</view>
 </template>
 
 <script>
+	import {
+	register
+	} from '@/api/api.js'
 	export default {
 		data() {
-			return {
+			return {	
+				surepwd:"",
+				parmas:{
+					username:"",
+					password:"",
+					mobile:"",
+					
+				}
 				
 			};
 		},
@@ -30,6 +40,43 @@
 			tologin(){
 				uni.navigateTo({
 					url: "./login"
+				})
+			},
+			registerbtn(){
+				const {username,password,mobile}=this.parmas;
+				
+				
+				if(!username)
+					return uni.showToast({ title: '用户名不能为空',icon:'none' });
+				if(!password)
+					return uni.showToast({ title: '密码不能为空',icon:'none' })
+				if(!mobile)
+					return uni.showToast({ title: '手机号不能为空',icon:'none' })
+				if(this.surepwd!=password)
+					return uni.showToast({ title: '两次密码输入不一致',icon:'none' })	
+					
+				
+				
+				register(this.parmas).then(res=>{
+					if(res.code==1){
+						uni.showToast({
+							title:"注册成功",
+							icon:""
+						}),
+					setTimeout(() => {
+					uni.switchTab({
+						url: '../index/index',
+					
+						
+					})
+					}, 500)
+					}else{
+						uni.showToast({
+							title:"注册失败",
+							icon:""
+						})
+						
+					}
 				})
 			}
 		}

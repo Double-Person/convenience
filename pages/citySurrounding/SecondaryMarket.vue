@@ -2,7 +2,11 @@
 	<view class="secondary-market">
 		<view v-for="(item,index) in marketlist" :key="index" class="list">
 			<view class=""  >
-				<UserTitle phone :item="item.user"> </UserTitle>
+				<UserTitle phone :item="item"> </UserTitle>
+			</view>
+			<view class="over-ellipsis-2" style="font-size:20rpx;padding: 0 76rpx;">
+				{{item.content}}
+				
 			</view>
 			<view class="fl jc-between list-item"  @tap="toinfo(item.id)">
 				<view v-for="(data,pic) in item.images" :key="pic" class="item">

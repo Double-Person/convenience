@@ -9,7 +9,7 @@
 			
 			<view class="coupons">
 				<scroll-view scroll-x="true" class="scrollist">
-					<view class="couponitem ershou" v-for="(item,index) in pic" :key="index">
+					<view class="couponitem ershou" v-for="(item,index) in pic" :key="index"  @tap="photoclick">
 						<image :src="$imgBaseUrl+item" mode=""></image>
 					</view>
 				</scroll-view>
@@ -62,40 +62,11 @@
 			</view>
 		</wyb-popup>
 
-		<wyb-popup ref="privacypopup" type="center" height="800" width="500" radius="6" :showCloseIcon="true" style="position: relative;" :scrollY="true">
-			<view class="popup-content ">
-				<view class="privacytitle">
-					隐私协议文字标题
-
-				</view>
-				<view class="privacycontent">
-
-					文字内容文字内容文字内容文字内容文字内容文字文字内容
-					文字内容文字内容文字内容文字内容文字内容文字文字内文
-					字内容文字文字内容文字内容文字内容内容文字内容文字文
-					字内容文字内容文字内容文字内容文字内容文字文字内容文
-					字内容文字文字内容文字内容文字内容内容文字内
-					文字内容文字内容文字内容文字内容文字内容文字文字内容
-					文字内容文字文字内容文字内容文字内容内容文字内容文字
-					文字内容文字内容文字内容文字内容文字内容文字文字内文
-					字内容文字文字内容
-
-
-				</view>
-				<view class="privacybtn">
-					<button class="no">不同意</button>
-					<button class="yes" @tap=agree>同意</button>
-
-				</view>
-
-
-
-			</view>
-		</wyb-popup>
+		
 
 
 		<view class="sendmessage">
-			<input type="text" v-model="commontconent" placeholder="说些什么吧" @tap="showprivacy"/>
+			<input type="text" v-model="commontconent" placeholder="说些什么吧"/>
 			<button class="sendcommont" @tap="sendcommonts">发送</button>
 
 		</view>
@@ -132,30 +103,60 @@
 		},
 		onLoad(id) {
 			this.sendcommontid=id.id;
+			this.getdatalist();
 			console.log(this.sendcommontid);
-			house_detail(id).then(res => {
-				console.log(res)
-				this.pic=res.data.images;
-				this.contents=res.data.content;
-				this.titlename=res.data.title;
-				this.comments=res.data.comment;
-			})
+		
 		},
+		
 	
 		methods: {
+			//图片预览
+			photoclick() {
+				let arr = this.pic.map(item=>{
+				return this.$imgBaseUrl+item
+				});
+				uni.previewImage({
+					/* current: index, //预览图片的下标 */
+					urls: arr //预览图片的地址，必须要数组形式，如果不是数组形式就转换成数组形式就可以
+				});
+			
+			},
+			getdatalist(){
+				house_detail({id:this.sendcommontid}).then(res => {
+					console.log(res)
+					this.pic=res.data.images;
+					this.contents=res.data.content;
+					this.titlename=res.data.title;
+					this.comments=res.data.comment;
+				})
+			},
 			setthetop() {
 				this.$refs.popup.show()
 			},
-			showprivacy() {
+			/* showprivacy() {
 				this.$refs.privacypopup.show()
-			},
+			}, */
 			agree(){
 				this.$refs.privacypopup.close()
 			},
 			sendcommonts(){
 				console.log(this.sendcommontid,this.commontconent)	
-				add_house_comment({job_id:this.sendcommontid,content:this.commontconent}).then(res=>{
+				add_house_comment({house_id:this.sendcommontid,content:this.commontconent}).then(res=>{
 					console.log(res)
+					if(res.code==1){
+						uni.showToast({
+							title:"发布成功",
+							icon:"",
+						})
+						this.commontconent="";
+						this.getdatalist();
+					}else{
+						uni.showToast({
+							title:"发布失败",
+							icon:"",
+						})
+						
+					}
 				})			
 			}
 		}

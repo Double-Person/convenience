@@ -3,7 +3,7 @@
 		<view v-for="(item, index) in houselist" :key="index" class="list">
 			<!-- 用户头部信息 -->
 			<view class="user-title">
-				<UserTitle top :item="item.user"></UserTitle>
+				<UserTitle top :item="item"></UserTitle>
 			</view>
 			<view class="list-item">
 				<view class="comment-content">
@@ -13,7 +13,7 @@
 					<image :src="$imgBaseUrl+data" mode="" v-for="(data,pic) in item.images" :key="pic" class="fl jc-between fl-warp"></image>
 				</view>
 
-				<view class="access">326人浏览</view>
+				<view class="access">{{item.hit}}人浏览</view>
 
 				<!-- 评论 -->
 				<AddInput btn="留下信息" class="add-comment" @add="add"/>

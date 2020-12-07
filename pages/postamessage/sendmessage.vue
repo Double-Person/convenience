@@ -1,7 +1,7 @@
 <template>
 	<view class="main">
 		<input type="text" v-model="parmas.title" placeholder="请输入标题" class="publishtitle" />
-		<textarea class="textarea" maxlength="-1" v-model="parmas.centent" placeholder="添加文字描述......" />
+		<textarea class="textarea" maxlength="-1" v-model="parmas.content" placeholder="添加文字描述......" />
 		<view class="addpic">
 			<view class="fl fl-warp imgshow">
 				
@@ -37,6 +37,9 @@
 	 	add_job,
 		add_market,
 		add_house,
+		addroast,
+		addmake,
+		addmp,
 		upLoadFile
 	 } from '@/api/api.js'
 
@@ -45,30 +48,52 @@
 		data() {
 			return {
 				type: '',
-				
+				myaddress:"",
 				parmas: {
 					title: '',
-					centent: '',
+					content: '',
 					phone: '',
-					images: []
-				}
+					images: [],
+					city:"成都",
+				},
 				
 			};
 		},
 		
 		onLoad(opt) {
+			this.getaddress();
 			this.type = opt.type
 			this.parmas.images = []
+		
+		},
+		mounted() {
+			
+			
 		},
 		
 		
 		methods:{
+			// 获取城市地址
+			getaddress(){
+				let that=this;
+				uni.getLocation({
+				    type: 'wgs84',
+					　geocode:true,
+				    success: function (res) {
+						that.parmas.city=res.address.street
+						console.log(that.parmas)
+				    },fail(err) {
+						console.log(err)
+				    }
+				});
+			
+			},
 			publish(){
 				
-				const {title, centent, images, phone} = this.parmas
+				const {title, content, images, phone} = this.parmas
 				if(!title) 
 					return uni.showToast({ title: '标题不能为空',icon:'none' });
-				if(!centent)
+				if(!content)
 					return uni.showToast({ title: '发布内容不能为空',icon:'none' })
 				if(!phone)
 					return uni.showToast({ title: '手机号不能为空',icon:'none' })
@@ -88,6 +113,21 @@
 					break;
 					case 'rent':  // 转让出租
 					add_house(this.parmas).then(({code, msg}) => {
+						this.isSuccess({code, msg})
+					})
+					break;
+					case 'roast':  // 圈友吐槽
+					addroast(this.parmas).then(({code, msg}) => {
+						this.isSuccess({code, msg})
+					})
+					break;
+					case 'share':  // 名品分享
+					addmp(this.parmas).then(({code, msg}) => {
+						this.isSuccess({code, msg})
+					})
+					break;
+					case 'disturb':  // 非诚勿扰
+					addmake(this.parmas).then(({code, msg}) => {
 						this.isSuccess({code, msg})
 					})
 					break;

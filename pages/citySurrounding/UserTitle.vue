@@ -1,10 +1,10 @@
 <template>
 	<view class="fl jc-between al-center user-title">
 		<view class="fl user-info">
-			<image class="img" :src="item && item.avatar" mode=""></image>
+			<image class="img" :src="item && item.user.avatar" mode=""></image>
 			<view class="info">
-				<view class="name">{{item && item.nickname}}</view>
-				<view class="placed-top" v-show="top">置顶</view>
+				<view class="name">{{item && item.user.nickname}}</view>
+				<view class="placed-top" v-show="item.is_top===1">置顶</view>
 			</view>
 		</view>
 		<view class="call-phone" v-show="phone" @click="callPhone(item && item.mobile)">拨打电话</view>
@@ -31,6 +31,9 @@
 
 			},
 
+		},
+		onLoad() {
+			console.log(item,"数据")
 		},
 		methods: {
 			callPhone(phone) {

@@ -1,5 +1,4 @@
 <template>
-	<!-- <scroll-view :refresher-threshold="80" scroll-y="true"> -->
 	<view class="surrounding">
 
 		<!-- 标题栏 -->
@@ -18,13 +17,8 @@
 
 		<!-- 转让出租 -->
 		<TransferRent v-show="active === 2" :houselist="navBar[active].list" />
-
-
-
 	</view>
-	<!-- </scroll-view> -->
 </template>
-
 <script>
 	import SecondaryMarket from './SecondaryMarket.vue';
 	import JobHunting from './JobHunting.vue';
@@ -100,6 +94,7 @@
 			_job(obj) {
 				job(obj).then(res => {
 					this.commitDataFn(res.data)
+					console.log(res)
 				})
 			},
 
@@ -107,6 +102,7 @@
 			_market(obj) {
 				market(obj).then(res => {
 					this.commitDataFn(res.data)
+					
 
 				})
 			},

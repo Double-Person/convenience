@@ -1,22 +1,22 @@
 <template>
 	<view>
-		<view class="lifetelevision common borderbottom bordertop">
-			<text>生活影视</text>
+		<view class="lifetelevision common borderbottom bordertop" @tap="tocarbonfibertrend">
+			<text>生活维修</text>
 			<image src="/static/img/postmessage/right.png" mode=""></image>
 		</view>
 		<view class="livecircle">
 			<view class="common borderxib">
 				<text>生活圈</text>
 			</view>
-			<view class="littilecommon">
+			<view class="littilecommon" @tap="topublishsmarket('roast')">
 				<text>圈友吐槽</text>
 				<image src="/static/img/postmessage/right.png" mode=""></image>
 			</view>
-			<view class="littilecommon">
+			<view class="littilecommon" @tap="topublishsmarket('share')">
 				<text>名品分享</text>
 				<image src="/static/img/postmessage/right.png" mode=""></image>
 			</view>
-			<view class="littilecommon">
+			<view class="littilecommon" @tap="topublishsmarket('disturb')">
 				<text>非诚勿扰</text>
 				<image src="/static/img/postmessage/right.png" mode=""></image>
 			</view>
@@ -59,6 +59,12 @@
 			topublishsmarket(type) {
 				uni.navigateTo({
 					url: "/pages/postamessage/sendmessage?type=" + type
+				})
+			},
+			//跳转生活维修
+			tocarbonfibertrend(){
+				uni.navigateTo({
+					url:"/pages/lifemaintenance/carbonfibertrend"
 				})
 			}
 	

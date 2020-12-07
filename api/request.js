@@ -3,13 +3,14 @@ let baseUrl_ = ''
 baseUrl_ = ''
 // #endif
 
+
 // #ifdef APP-PLUS
 baseUrl_ = 'http://bianmin.hkzhtech.com/api'
 // #endif
 export const baseUrl = baseUrl_
 
 
-export const imgBaseUrl = 'http://bianmin.hkzhtech.com/'
+export const imgBaseUrl = 'http://bianmin.hkzhtech.com'
 
 
 export const ajax = (option) => {
@@ -42,9 +43,7 @@ export const ajax = (option) => {
 
 			console.log(e)
 		}
-
-
-
+       
 		uni.request({
 			url: baseUrl + option.url,
 			data: option.data || {},
@@ -54,7 +53,6 @@ export const ajax = (option) => {
 				"Content-Type": "application/x-www-form-urlencoded"
 			},
 			success: (res) => {
-
 				if (res.data.code == 0) {
 					uni.showToast({
 						title: '请求失败，请稍后重试',

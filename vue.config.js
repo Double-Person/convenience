@@ -9,6 +9,16 @@ module.exports = {
           "^/": "",
         },
       },
+	 
+	  "/addons/signin/api.index/dosign": {
+	    target: "http://bianmin.hkzhtech.com",		
+	    changeOrigin: true,
+	    ws: true,
+	    pathRewrite: {
+	      "^/addons/signin/api.index/dosign": "",
+	    },
+	  },
+	  
     },
   }
 };

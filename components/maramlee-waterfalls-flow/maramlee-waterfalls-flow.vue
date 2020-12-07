@@ -2,6 +2,7 @@
   <view class="waterfalls-box" :style="{ height: height + 'px' }">
     <!--  #ifdef  MP-WEIXIN -->
     <view
+	
       v-for="(item, index) of list"
       class="waterfalls-list"
       :key="item[idKey]"
@@ -31,6 +32,8 @@
 
     <!--  #ifndef  MP-WEIXIN -->
     <view
+
+	@tap="toshareinfo"
       v-for="(item, index) of list"
       class="waterfalls-list"
       :key="item[idKey]"
@@ -45,6 +48,7 @@
       @click="$emit('wapper-lick', item)"
     >
       <image
+	 
         class="waterfalls-list-image"
         :class="{ single }"
         mode="widthFix"
@@ -52,7 +56,7 @@
         :src="item[imageSrcKey] || ' '"
         @load="imageLoadHandle(index)"
         @error="imageLoadHandle(index)"
-        @click="$emit('image-click', item)"
+       
       />
       <slot v-bind="item" />
     </view>
@@ -140,6 +144,11 @@ export default {
       this.num = 0;
       this.oldNum = 0;
     },
+	toshareinfo(){
+		uni.navigateTo({
+			url:"../../pages/index/shareinfo"
+		})
+	}
   },
 };
 </script>

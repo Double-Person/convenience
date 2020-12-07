@@ -48,6 +48,7 @@ export default {
     background: #f6f6f6;
     border-radius: 40rpx;
 	padding-left: 53rpx;
+	text-indent: 1rpx;
   }
   .placeholder-class {
     font-size: 20rpx;

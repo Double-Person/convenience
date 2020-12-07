@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="top">
-			<button>今日签到</button>
+			<button @tap="dosignin">今日签到</button>
 		</view>
 
 
@@ -35,9 +35,12 @@
 </template>
 
 <script>
-	import uniSteps from '@/components/uni-steps/uni-steps.vue'
+	import uniSteps from '@/components/uni-steps/uni-steps.vue';
 	 import QianDao from "@/components/qian-dao/qian-dao.vue";
-	 import Calendar from "@/components/calendar/Calendar.vue"
+	 import Calendar from "@/components/calendar/Calendar.vue";
+	 import {
+		 dosign
+	 }from "@/api/api.js"
 	export default {
 		data() {
 			return {
@@ -49,6 +52,12 @@
 			 Calendar
 		},
 		methods:{
+			dosignin(){
+				dosign().then(res=>{
+					console.log(res)
+				})
+				
+			}
 		
 		}
 	}

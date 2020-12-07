@@ -1,6 +1,6 @@
 const mixin = {
-	data(){
-		return{
+	data() {
+		return {
 			limit: 1
 		}
 	},
@@ -10,12 +10,13 @@ const mixin = {
 	},
 	onReachBottom() {
 		console.log('上拉刷新全局')
-		if(typeof this.getList === 'function') {
+		if (typeof this.getList === 'function') {
 			this.getList()
 		}
 	},
 	methods: {
-		
+	
+
 	}
 }
 export default mixin
